@@ -135,16 +135,19 @@ const Index = () => {
             <h2 className="text-2xl sm:text-3xl font-semibold">Por que o modelo tradicional está ultrapassado?</h2>
             <div className="mt-8 grid md:grid-cols-3 gap-6">
               <div className="card-elevated ring-accent/20 hover:ring-accent/40">
-                <HandCoins />
-                <p className="mt-3">Investimento imobiliário restrito a grandes players</p>
+                <span className="icon-chip w-10 h-10"><HandCoins className="text-accent" /></span>
+                <h3 className="mt-3 font-semibold">Acesso restrito</h3>
+                <p className="text-muted-foreground text-sm mt-1">Investimento imobiliário restrito a grandes players</p>
               </div>
               <div className="card-elevated ring-accent/20 hover:ring-accent/40">
-                <Timer />
-                <p className="mt-3">Urbanização lenta e com altos custos</p>
+                <span className="icon-chip w-10 h-10"><Timer className="text-primary" /></span>
+                <h3 className="mt-3 font-semibold">Custos e lentidão</h3>
+                <p className="text-muted-foreground text-sm mt-1">Urbanização lenta e com altos custos</p>
               </div>
               <div className="card-elevated ring-accent/20 hover:ring-accent/40">
-                <Layers3 />
-                <p className="mt-3">Distratos e gargalos administrativos</p>
+                <span className="icon-chip w-10 h-10"><Layers3 className="text-primary" /></span>
+                <h3 className="mt-3 font-semibold">Distratos e gargalos</h3>
+                <p className="text-muted-foreground text-sm mt-1">Distratos e gargalos administrativos</p>
               </div>
             </div>
           </div>
@@ -188,20 +191,23 @@ const Index = () => {
               <CarouselContent>
                 <CarouselItem>
                   <div className="card-elevated ring-accent/20 hover:ring-accent/40">
-                    <h3 className="font-semibold">Franqueado</h3>
-                    <p className="text-muted-foreground mt-2">Lucro recorrente com vendas e valorização</p>
+                    <span className="icon-chip w-10 h-10"><Store className="text-primary" /></span>
+                    <h3 className="mt-3 font-semibold">Franqueado</h3>
+                    <p className="text-muted-foreground text-sm mt-1">Lucro recorrente com vendas e valorização</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
                   <div className="card-elevated ring-accent/20 hover:ring-accent/40">
-                    <h3 className="font-semibold">Investidor</h3>
-                    <p className="text-muted-foreground mt-2">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
+                    <span className="icon-chip w-10 h-10"><Coins className="text-accent" /></span>
+                    <h3 className="mt-3 font-semibold">Investidor</h3>
+                    <p className="text-muted-foreground text-sm mt-1">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
                   <div className="card-elevated ring-accent/20 hover:ring-accent/40">
-                    <h3 className="font-semibold">Terrenista</h3>
-                    <p className="text-muted-foreground mt-2">Monetização rápida da gleba com valorização antecipada</p>
+                    <span className="icon-chip w-10 h-10"><MapPinned className="text-primary" /></span>
+                    <h3 className="mt-3 font-semibold">Terrenista</h3>
+                    <p className="text-muted-foreground text-sm mt-1">Monetização rápida da gleba com valorização antecipada</p>
                   </div>
                 </CarouselItem>
               </CarouselContent>
@@ -214,16 +220,19 @@ const Index = () => {
           {/* Desktop Cards */}
           <div className="mt-8 hidden md:grid md:grid-cols-3 gap-6">
             <article className="card-elevated ring-accent/20 hover:ring-accent/40">
-              <h3 className="font-semibold">Franqueado</h3>
-              <p className="text-muted-foreground mt-2">Lucro recorrente com vendas e valorização</p>
+              <span className="icon-chip w-10 h-10"><Store className="text-primary" /></span>
+              <h3 className="mt-3 font-semibold">Franqueado</h3>
+              <p className="text-muted-foreground text-sm mt-1">Lucro recorrente com vendas e valorização</p>
             </article>
             <article className="card-elevated ring-accent/20 hover:ring-accent/40">
-              <h3 className="font-semibold">Investidor</h3>
-              <p className="text-muted-foreground mt-2">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
+              <span className="icon-chip w-10 h-10"><Coins className="text-accent" /></span>
+              <h3 className="mt-3 font-semibold">Investidor</h3>
+              <p className="text-muted-foreground text-sm mt-1">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
             </article>
             <article className="card-elevated ring-accent/20 hover:ring-accent/40">
-              <h3 className="font-semibold">Terrenista</h3>
-              <p className="text-muted-foreground mt-2">Monetização rápida da gleba com valorização antecipada</p>
+              <span className="icon-chip w-10 h-10"><MapPinned className="text-primary" /></span>
+              <h3 className="mt-3 font-semibold">Terrenista</h3>
+              <p className="text-muted-foreground text-sm mt-1">Monetização rápida da gleba com valorização antecipada</p>
             </article>
           </div>
         </section>
@@ -247,13 +256,29 @@ const Index = () => {
 
         {/* Benefícios da Tokenização */}
         <section id="beneficios" className="scroll-mt-24">
-          <div className="container py-16 text-accent-foreground">
+          <div className="container py-16">
             <h2 className="text-2xl sm:text-3xl font-semibold">Benefícios da Tokenização</h2>
             <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="card-elevated ring-accent/20 bg-background/70"><Rocket className="text-primary"/> <p className="mt-2">Captação mais rápida</p></div>
-              <div className="card-elevated ring-accent/20 bg-background/70"><HandCoins className="text-primary"/> <p className="mt-2">Menos risco de capital próprio</p></div>
-              <div className="card-elevated ring-accent/20 bg-background/70"><Users className="text-primary"/> <p className="mt-2">Comunidade de investidores em cada projeto</p></div>
-              <div className="card-elevated ring-accent/20 bg-background/70"><Coins className="text-primary"/> <p className="mt-2">Facilidade de revenda de cotas</p></div>
+              <div className="card-elevated ring-accent/20 bg-background/70">
+                <span className="icon-chip w-10 h-10"><Rocket className="text-primary"/></span>
+                <h3 className="mt-3 font-semibold">Captação mais rápida</h3>
+                <p className="text-muted-foreground text-sm mt-1">Menos fricção na entrada de capital</p>
+              </div>
+              <div className="card-elevated ring-accent/20 bg-background/70">
+                <span className="icon-chip w-10 h-10"><HandCoins className="text-primary"/></span>
+                <h3 className="mt-3 font-semibold">Menos risco de capital próprio</h3>
+                <p className="text-muted-foreground text-sm mt-1">Diluição do aporte com tokens</p>
+              </div>
+              <div className="card-elevated ring-accent/20 bg-background/70">
+                <span className="icon-chip w-10 h-10"><Users className="text-primary"/></span>
+                <h3 className="mt-3 font-semibold">Comunidade de investidores</h3>
+                <p className="text-muted-foreground text-sm mt-1">Engajamento local e coparticipação</p>
+              </div>
+              <div className="card-elevated ring-accent/20 bg-background/70">
+                <span className="icon-chip w-10 h-10"><Coins className="text-primary"/></span>
+                <h3 className="mt-3 font-semibold">Revenda de cotas facilitada</h3>
+                <p className="text-muted-foreground text-sm mt-1">Liquidez simplificada</p>
+              </div>
             </div>
           </div>
         </section>

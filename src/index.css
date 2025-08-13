@@ -27,7 +27,7 @@ All colors MUST be HSL.
 
     /* Tons de apoio em dark */
     --muted: 165 12% 14%;
-    --muted-foreground: 215 20% 72%; /* cinza claro legível */
+    --muted-foreground: 210 14% 83%; /* cinza claro #D1D5DB */
 
     /* Detalhe: dourado para destaques */
     --accent: 51 100% 50%; /* #FFD700 */
@@ -36,8 +36,8 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 165 10% 18%;
-    --input: 165 10% 18%;
+    --border: 165 10% 24%;
+    --input: 165 10% 24%;
     --ring: 156 100% 38%;
 
     --radius: 0.5rem;
