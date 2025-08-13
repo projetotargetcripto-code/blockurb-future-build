@@ -16,8 +16,10 @@ export function Protected({ children, redirectTo = "/login", debugBypass = false
   useEffect(() => {
     if (debugBypass) return; // show content regardless
     if (!loading && !session) {
+      const next = encodeURIComponent(location.pathname + location.search);
+      const target = `${redirectTo}?next=${next}`;
       if (location.pathname !== redirectTo) {
-        navigate(redirectTo, { replace: true, state: { from: location } });
+        navigate(target, { replace: true, state: { from: location } });
       }
     }
   }, [debugBypass, loading, session, navigate, location, redirectTo]);

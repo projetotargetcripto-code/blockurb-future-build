@@ -24,8 +24,8 @@ export function LoginForm({ title, subtitle, scope, redirectPath }: LoginFormPro
     setError(null);
     const { data: res, error } = await supabase.auth.signInWithPassword({ email: data.email, password: data.password });
     if (error) { setError(error.message || "Falha ao entrar"); return; }
-    if (res?.session && redirectPath) {
-      navigate(redirectPath);
+    if (res?.session) {
+      navigate(redirectPath || "/admin");
     }
   });
 

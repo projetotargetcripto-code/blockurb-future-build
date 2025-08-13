@@ -38,11 +38,11 @@ export function Topbar({ breadcrumbs }: { breadcrumbs?: { label: string; href?: 
                 <span className="hidden sm:inline text-sm">{user?.email || 'Usuário'}</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="z-[60] bg-background">
               <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem><UserIcon className="mr-2 size-4" /> Perfil</DropdownMenuItem>
-              <DropdownMenuItem><LogOut className="mr-2 size-4" /> Sair</DropdownMenuItem>
+              <DropdownMenuItem asChild><a href="/logout"><LogOut className="mr-2 size-4" /> Sair</a></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

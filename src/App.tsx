@@ -27,6 +27,7 @@ import { AuthProvider } from "@/providers/AuthProvider";
 import { PanelHomePage, PanelSectionPage } from "@/components/panels/PanelPages";
 import EmpreendimentoNovo from "./pages/admin/EmpreendimentoNovo";
 import AdminMapa from "./pages/admin/Mapa";
+import Logout from "./pages/Logout";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +62,7 @@ const App = () => (
             <Route path="/login/obras" element={<LoginObras />} />
             <Route path="/login/investidor" element={<LoginInvestidor />} />
             <Route path="/login/terrenista" element={<LoginTerrenista />} />
+            <Route path="/logout" element={<Logout />} />
 
             {/* Panels - rotas curtas */}
             {/* Super Admin */}

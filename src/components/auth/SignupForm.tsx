@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import supabase from "@/lib/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 export interface SignupFormProps {
   title: string;
@@ -16,13 +17,18 @@ export function SignupForm({ title, scope }: SignupFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [ok, setOk] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const onSubmit = handleSubmit(async (data) => {
     setError(null); setOk(null);
     if (!data.terms) { setAgreeError('Você deve aceitar os Termos para continuar.'); return; }
     if (data.password !== data.confirm) { setError('As senhas não coincidem.'); return; }
-    const { error } = await supabase.auth.signUp({ email: data.email, password: data.password, options: { data: { name: data.name } } });
+    const { error } = await supabase.auth.signUp({ email: data.email, password: data.password, options: { data: { full_name: data.name } } });
     if (error) { setError(error.message || 'Falha ao criar conta'); return; }
-    setOk('Verifique seu e-mail para confirmar a conta.');
+    const qs = new URLSearchParams();
+    if (scope) qs.set('scope', scope);
+    qs.set('msg', 'check-email');
+    navigate(`/login?${qs.toString()}`);
   });
 
   const preserve = scope ? `?scope=${encodeURIComponent(scope)}` : '';

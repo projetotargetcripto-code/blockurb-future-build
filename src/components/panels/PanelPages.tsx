@@ -11,7 +11,7 @@ import { adminTeamColumns, adminTeamRows } from "@/mocks/tables";
 import { Link } from "react-router-dom";
 export function PanelHomePage({ menuKey, title }: { menuKey: string; title: string }) {
   return (
-    <Protected debugBypass={true}>
+    <Protected>
       <AppShell menuKey={menuKey} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
         <div className="flex items-center justify-between gap-3 mb-4">
           <h2 className="text-xl font-semibold">Ações rápidas</h2>
@@ -78,7 +78,7 @@ export function PanelHomePage({ menuKey, title }: { menuKey: string; title: stri
 
 export function PanelSectionPage({ menuKey, title, section }: { menuKey: string; title: string; section: string }) {
   return (
-    <Protected debugBypass={true}>
+    <Protected>
       <AppShell menuKey={menuKey} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }, { label: section }]}>
         {/* TODO: Substituir por conteúdo real desta seção */}
         <div className="rounded-[14px] border border-border bg-secondary/60 p-6">
