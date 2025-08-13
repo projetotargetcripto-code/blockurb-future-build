@@ -6,13 +6,19 @@ import { DataTable } from "@/components/app/DataTable";
 import { ChartPlaceholder } from "@/components/app/ChartPlaceholder";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Building2, FileText, Target } from "lucide-react";
+import { Building2, FileText, Target, Plus } from "lucide-react";
 import { adminTeamColumns, adminTeamRows } from "@/mocks/tables";
-
+import { Link } from "react-router-dom";
 export function PanelHomePage({ menuKey, title }: { menuKey: string; title: string }) {
   return (
     <Protected debugBypass={true}>
       <AppShell menuKey={menuKey} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <h2 className="text-xl font-semibold">Ações rápidas</h2>
+          <Link to="/admin/empreendimentos/novo">
+            <Button variant="cta" className="gap-2"><Plus className="size-4" /> Novo Empreendimento</Button>
+          </Link>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <KPIStat label="Indicador A" value={128} icon={<Building2 className="text-primary" />} />
           <KPIStat label="Indicador B" value={12} icon={<FileText className="text-accent" />} tone="warning" />

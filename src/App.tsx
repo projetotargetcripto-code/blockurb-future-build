@@ -25,6 +25,7 @@ import LoginInvestidor from "./pages/login/Investidor";
 import LoginTerrenista from "./pages/login/Terrenista";
 import { AuthProvider } from "@/providers/AuthProvider";
 import { PanelHomePage, PanelSectionPage } from "@/components/panels/PanelPages";
+import EmpreendimentoNovo from "./pages/admin/EmpreendimentoNovo";
 
 const queryClient = new QueryClient();
 
@@ -76,7 +77,7 @@ const App = () => (
             <Route path="/adminfilial/empreendimentos" element={<PanelSectionPage menuKey="adminfilial" title="Admin Filial" section="Empreendimentos" />} />
             {/* Alias antigo */}
             <Route path="/admin" element={<PanelHomePage menuKey="adminfilial" title="Admin Filial" />} />
-
+            <Route path="/admin/empreendimentos/novo" element={<EmpreendimentoNovo />} />
             {/* Urbanista */}
             <Route path="/urbanista" element={<PanelHomePage menuKey="urbanista" title="Urbanista" />} />
             <Route path="/urbanista/relatorios" element={<PanelSectionPage menuKey="urbanista" title="Urbanista" section="Relatórios" />} />
