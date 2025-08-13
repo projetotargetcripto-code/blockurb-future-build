@@ -16,18 +16,18 @@ import {
 } from "lucide-react";
 
 const cards = [
-  { title: "Painel Super Admin", desc: "Controle total da plataforma e permissões.", href: "/painel/super-admin", Icon: Shield },
-  { title: "Painel Admin Filial", desc: "Gestão completa da filial e operações.", href: "/painel/admin-filial", Icon: Building2 },
-  { title: "Painel Urbanismo", desc: "Projetos, mapas e integrações GIS.", href: "/painel/urbanismo", Icon: Map },
-  { title: "Painel Jurídico", desc: "Contratos e regularização fundiária.", href: "/painel/juridico", Icon: ScrollText },
-  { title: "Painel Contabilidade", desc: "Financeiro e relatórios fiscais.", href: "/painel/contabilidade", Icon: Calculator },
-  { title: "Painel Marketing", desc: "Campanhas e materiais de venda.", href: "/painel/marketing", Icon: Megaphone },
-  { title: "Painel Comercial", desc: "Negociações e fechamento de vendas.", href: "/painel/comercial", Icon: Briefcase },
-  { title: "Painel Imobiliária", desc: "Corretores, imóveis e leads.", href: "/painel/imobiliaria", Icon: Home },
-  { title: "Painel Corretores", desc: "Leads, agenda e vendas.", href: "/painel/corretores", Icon: User },
-  { title: "Painel Investidor", desc: "Investimentos e rentabilidade.", href: "/painel/investidor", Icon: LineChart },
-  { title: "Painel Terrenista", desc: "Projeto, retorno e status da gleba.", href: "/painel/terrenista", Icon: Landmark },
-  { title: "Painel Obras", desc: "Cronograma e andamento de obras.", href: "/painel/obras", Icon: Hammer },
+  { title: "Painel Super Admin", desc: "Controle total da plataforma e permissões.", href: "/login/super-admin", Icon: Shield },
+  { title: "Painel Admin Filial", desc: "Gestão completa da filial e operações.", href: "/login/admin", Icon: Building2 },
+  { title: "Painel Urbanismo", desc: "Projetos, mapas e integrações GIS.", href: "/login/urbanismo", Icon: Map },
+  { title: "Painel Jurídico", desc: "Contratos e regularização fundiária.", href: "/login/juridico", Icon: ScrollText },
+  { title: "Painel Contabilidade", desc: "Financeiro e relatórios fiscais.", href: "/login/contabilidade", Icon: Calculator },
+  { title: "Painel Marketing", desc: "Campanhas e materiais de venda.", href: "/login/marketing", Icon: Megaphone },
+  { title: "Painel Comercial", desc: "Negociações e fechamento de vendas.", href: "/login/comercial", Icon: Briefcase },
+  { title: "Painel Imobiliária", desc: "Corretores, imóveis e leads.", href: "/login/imobiliaria", Icon: Home },
+  { title: "Painel Corretores", desc: "Leads, agenda e vendas.", href: "/login/corretor", Icon: User },
+  { title: "Painel Investidor", desc: "Investimentos e rentabilidade.", href: "/login/investidor", Icon: LineChart },
+  { title: "Painel Terrenista", desc: "Projeto, retorno e status da gleba.", href: "/login/terrenista", Icon: Landmark },
+  { title: "Painel Obras", desc: "Cronograma e andamento de obras.", href: "/login/obras", Icon: Hammer },
 ] as const;
 
 const Acesso = () => {
