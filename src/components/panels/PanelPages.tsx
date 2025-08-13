@@ -7,27 +7,17 @@ import { ChartPlaceholder } from "@/components/app/ChartPlaceholder";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Building2, FileText, Target } from "lucide-react";
-import { adminKPIs } from "@/mocks/kpis";
 import { adminTeamColumns, adminTeamRows } from "@/mocks/tables";
 
-export default function Page() {
+export function PanelHomePage({ menuKey, title }: { menuKey: string; title: string }) {
   return (
     <Protected debugBypass={true}>
-      <AppShell menuKey="admin" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Admin', href: '/admin' }, { label: 'Dashboard' }]}>
+      <AppShell menuKey={menuKey} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* KPIs */}
-          <div className="rounded-[14px]">
-            <KPIStat label={adminKPIs[0].label} value={adminKPIs[0].value} icon={<Building2 className="text-primary" />} />
-          </div>
-          <div className="rounded-[14px]">
-            <KPIStat label={adminKPIs[1].label} value={adminKPIs[1].value} tone="warning" icon={<FileText className="text-accent" />} />
-          </div>
-          <div className="rounded-[14px]">
-            <KPIStat label={adminKPIs[2].label} value={adminKPIs[2].value} delta={adminKPIs[2].delta} tone="positive" icon={<FileText className="text-primary" />} />
-          </div>
-          <div className="rounded-[14px]">
-            <KPIStat label={adminKPIs[3].label} value={adminKPIs[3].value} delta={adminKPIs[3].delta} tone="positive" icon={<Target className="text-primary" />} />
-          </div>
+          <KPIStat label="Indicador A" value={128} icon={<Building2 className="text-primary" />} />
+          <KPIStat label="Indicador B" value={12} icon={<FileText className="text-accent" />} tone="warning" />
+          <KPIStat label="Indicador C" value={46} delta="+12%" icon={<FileText className="text-primary" />} tone="positive" />
+          <KPIStat label="Indicador D" value="18%" delta="+2pp" icon={<Target className="text-primary" />} tone="positive" />
         </div>
 
         <div className="mt-6">
@@ -57,11 +47,11 @@ export default function Page() {
 
         <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
-            <h3 className="mb-2 font-semibold">Equipe</h3>
+            <h3 className="mb-2 font-semibold">Tabela exemplo</h3>
             <DataTable columns={adminTeamColumns} rows={adminTeamRows} pageSize={5} />
           </div>
           <div>
-            <ChartPlaceholder title="Vendas por semana" />
+            <ChartPlaceholder title="Gráfico (placeholder)" />
           </div>
         </div>
 
@@ -73,6 +63,24 @@ export default function Page() {
             <div className="mt-4">
               <Button variant="outline">Abrir mapa completo</Button>
             </div>
+          </div>
+        </div>
+      </AppShell>
+    </Protected>
+  );
+}
+
+export function PanelSectionPage({ menuKey, title, section }: { menuKey: string; title: string; section: string }) {
+  return (
+    <Protected debugBypass={true}>
+      <AppShell menuKey={menuKey} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }, { label: section }]}>
+        {/* TODO: Substituir por conteúdo real desta seção */}
+        <div className="rounded-[14px] border border-border bg-secondary/60 p-6">
+          <h2 className="text-xl font-semibold">{title} — {section}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">Template de seção com dados mock. Integração real virá na próxima fase.</p>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <ChartPlaceholder title="KPI da seção (placeholder)" />
+            <ChartPlaceholder title="Tendências (placeholder)" />
           </div>
         </div>
       </AppShell>

@@ -14,7 +14,7 @@ export function Topbar({ breadcrumbs }: { breadcrumbs?: { label: string; href?: 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur">
       <div className="h-14 container flex items-center gap-3">
-        {/* O trigger do Sidebar deve estar no layout pai */}
+        <SidebarTrigger className="mr-2" aria-label="Alternar menu" />
         <a href="/" className="font-bold tracking-tight text-lg"><span className="text-primary">Block</span>URB</a>
 
         <div className="flex-1 max-w-xl ml-4 hidden md:block">
