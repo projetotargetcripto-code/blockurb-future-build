@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Whitepaper from "./pages/Whitepaper";
 import Acesso from "./pages/Acesso";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Reset from "./pages/Reset";
 
 const queryClient = new QueryClient();
 
