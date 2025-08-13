@@ -23,6 +23,7 @@ import LoginComercial from "./pages/login/Comercial";
 import LoginObras from "./pages/login/Obras";
 import LoginInvestidor from "./pages/login/Investidor";
 import LoginTerrenista from "./pages/login/Terrenista";
+import { AuthProvider } from "@/providers/AuthProvider";
 
 const queryClient = new QueryClient();
 
@@ -33,33 +34,35 @@ const App = () => (
       <Sonner />
       <ProgressBar />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/whitepaper" element={<Whitepaper />} />
-          <Route path="/acesso" element={<Acesso />} />
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/whitepaper" element={<Whitepaper />} />
+            <Route path="/acesso" element={<Acesso />} />
 
-          {/* Auth base routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/reset" element={<Reset />} />
+            {/* Auth base routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/reset" element={<Reset />} />
 
-          {/* Auth scoped routes */}
-          <Route path="/login/super-admin" element={<LoginSuperAdmin />} />
-          <Route path="/login/admin" element={<LoginAdmin />} />
-          <Route path="/login/imobiliaria" element={<LoginImobiliaria />} />
-          <Route path="/login/corretor" element={<LoginCorretor />} />
-          <Route path="/login/juridico" element={<LoginJuridico />} />
-          <Route path="/login/urbanismo" element={<LoginUrbanismo />} />
-          <Route path="/login/contabilidade" element={<LoginContabilidade />} />
-          <Route path="/login/marketing" element={<LoginMarketing />} />
-          <Route path="/login/comercial" element={<LoginComercial />} />
-          <Route path="/login/obras" element={<LoginObras />} />
-          <Route path="/login/investidor" element={<LoginInvestidor />} />
-          <Route path="/login/terrenista" element={<LoginTerrenista />} />
+            {/* Auth scoped routes */}
+            <Route path="/login/super-admin" element={<LoginSuperAdmin />} />
+            <Route path="/login/admin" element={<LoginAdmin />} />
+            <Route path="/login/imobiliaria" element={<LoginImobiliaria />} />
+            <Route path="/login/corretor" element={<LoginCorretor />} />
+            <Route path="/login/juridico" element={<LoginJuridico />} />
+            <Route path="/login/urbanismo" element={<LoginUrbanismo />} />
+            <Route path="/login/contabilidade" element={<LoginContabilidade />} />
+            <Route path="/login/marketing" element={<LoginMarketing />} />
+            <Route path="/login/comercial" element={<LoginComercial />} />
+            <Route path="/login/obras" element={<LoginObras />} />
+            <Route path="/login/investidor" element={<LoginInvestidor />} />
+            <Route path="/login/terrenista" element={<LoginTerrenista />} />
 
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

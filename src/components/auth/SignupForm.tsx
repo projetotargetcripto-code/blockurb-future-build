@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import supabase from "@/lib/supabaseClient";
 
 export interface SignupFormProps {
   title: string;
@@ -12,11 +13,16 @@ export interface SignupFormProps {
 export function SignupForm({ title, scope }: SignupFormProps) {
   const { register, handleSubmit } = useForm<{ name: string; email: string; password: string; confirm: string; terms: boolean }>();
   const [agreeError, setAgreeError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [ok, setOk] = useState<string | null>(null);
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
+    setError(null); setOk(null);
     if (!data.terms) { setAgreeError('Você deve aceitar os Termos para continuar.'); return; }
-    // TODO: integrar Supabase signUp
-    console.log('signup', { name: data.name, email: data.email, scope });
+    if (data.password !== data.confirm) { setError('As senhas não coincidem.'); return; }
+    const { error } = await supabase.auth.signUp({ email: data.email, password: data.password, options: { data: { name: data.name } } });
+    if (error) { setError(error.message || 'Falha ao criar conta'); return; }
+    setOk('Verifique seu e-mail para confirmar a conta.');
   });
 
   const preserve = scope ? `?scope=${encodeURIComponent(scope)}` : '';
@@ -52,6 +58,9 @@ export function SignupForm({ title, scope }: SignupFormProps) {
       </div>
 
       <Button type="submit" variant="cta" size="lg" className="w-full btn-glow active:scale-[0.99]">Criar conta</Button>
+
+      {error && <p className="text-sm text-destructive" role="alert" aria-live="assertive">{error}</p>}
+      {ok && <p className="text-sm text-primary" role="status" aria-live="polite">{ok}</p>}
 
       <div className="flex items-center justify-between text-sm">
         <span className="text-muted-foreground">Já tem conta?</span>

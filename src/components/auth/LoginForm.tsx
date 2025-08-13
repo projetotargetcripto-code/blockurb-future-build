@@ -4,6 +4,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import supabase from "@/lib/supabaseClient";
 
 export interface LoginFormProps {
   title: string;
@@ -15,10 +17,16 @@ export interface LoginFormProps {
 export function LoginForm({ title, subtitle, scope, redirectPath }: LoginFormProps) {
   const { register, handleSubmit } = useForm<{ email: string; password: string }>();
   const [show, setShow] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const onSubmit = handleSubmit((data) => {
-    // TODO: integrar Supabase signInWithPassword
-    console.log('login', { email: data.email, scope, redirectPath });
+  const onSubmit = handleSubmit(async (data) => {
+    setError(null);
+    const { data: res, error } = await supabase.auth.signInWithPassword({ email: data.email, password: data.password });
+    if (error) { setError(error.message || "Falha ao entrar"); return; }
+    if (res?.session && redirectPath) {
+      navigate(redirectPath);
+    }
   });
 
   const preserve = scope ? `?scope=${encodeURIComponent(scope)}` : '';
@@ -47,6 +55,8 @@ export function LoginForm({ title, subtitle, scope, redirectPath }: LoginFormPro
       </div>
 
       <Button type="submit" variant="cta" size="lg" className="w-full btn-glow active:scale-[0.99]">Entrar</Button>
+
+      {error && <div className="text-sm text-destructive" role="alert" aria-live="assertive">{error}</div>}
 
       <div className="text-sm text-muted-foreground">
         Ao continuar, você concorda com os Termos de Uso e a Política de Privacidade.

@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import supabase from "@/lib/supabaseClient";
 
 export interface ResetFormProps {
   scope?: string | null;
@@ -9,10 +11,15 @@ export interface ResetFormProps {
 
 export function ResetForm({ scope }: ResetFormProps) {
   const { register, handleSubmit } = useForm<{ email: string }>();
+  const [msg, setMsg] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = handleSubmit((data) => {
-    // TODO: integrar Supabase resetPasswordForEmail
-    console.log('reset', { email: data.email, scope });
+  const onSubmit = handleSubmit(async (data) => {
+    setMsg(null); setError(null);
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const { error } = await supabase.auth.resetPasswordForEmail(data.email, { redirectTo: origin + '/reset/callback' });
+    if (error) { setError(error.message || 'Falha ao enviar e-mail'); return; }
+    setMsg('Se o e-mail estiver cadastrado, você receberá um link para redefinir a senha.');
   });
 
   const preserve = scope ? `?scope=${encodeURIComponent(scope)}` : '';
@@ -33,8 +40,9 @@ export function ResetForm({ scope }: ResetFormProps) {
 
       <Button type="submit" variant="cta" size="lg" className="w-full btn-glow active:scale-[0.99]">Enviar link de recuperação</Button>
 
+      {error && <p className="text-sm text-destructive" role="alert" aria-live="assertive">{error}</p>}
       <p className="text-sm text-muted-foreground">
-        Se o e-mail estiver cadastrado, você receberá um link para redefinir a senha.
+        {msg ?? 'Se o e-mail estiver cadastrado, você receberá um link para redefinir a senha.'}
       </p>
 
       <div className="text-right text-sm">
