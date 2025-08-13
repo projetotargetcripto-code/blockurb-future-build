@@ -82,6 +82,15 @@ const App = () => (
             <Route path="/admin" element={<PanelHomePage menuKey="adminfilial" title="Admin Filial" />} />
             <Route path="/admin/empreendimentos/novo" element={<EmpreendimentoNovo />} />
             <Route path="/admin/mapa" element={<AdminMapa />} />
+            
+            {/* Debug routes */}
+            <Route path="/debug/connection" element={<div style={{all:'initial'}}><div id="debug-connection-root"></div></div>} />
+            
+            {/* Load debug component dynamically */}
+            <Route path="/debug/connection" lazy={async () => {
+              const Component = (await import("./app/debug/connection/page")).default;
+              return { Component };
+            }} />
             {/* Urbanista */}
             <Route path="/urbanista" element={<PanelHomePage menuKey="urbanista" title="Urbanista" />} />
             <Route path="/urbanista/relatorios" element={<PanelSectionPage menuKey="urbanista" title="Urbanista" section="Relatórios" />} />

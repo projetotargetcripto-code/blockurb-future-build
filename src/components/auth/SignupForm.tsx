@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import supabase from "@/lib/supabaseClient";
+import { getClient } from "@/lib/dataClient";
 import { useNavigate } from "react-router-dom";
 
 export interface SignupFormProps {
@@ -23,6 +23,7 @@ export function SignupForm({ title, scope }: SignupFormProps) {
     setError(null); setOk(null);
     if (!data.terms) { setAgreeError('Você deve aceitar os Termos para continuar.'); return; }
     if (data.password !== data.confirm) { setError('As senhas não coincidem.'); return; }
+    const { supabase } = getClient();
     const { error } = await supabase.auth.signUp({ email: data.email, password: data.password, options: { data: { full_name: data.name } } });
     if (error) { setError(error.message || 'Falha ao criar conta'); return; }
     const qs = new URLSearchParams();

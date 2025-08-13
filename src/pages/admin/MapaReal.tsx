@@ -10,50 +10,40 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import L, { LatLngBoundsExpression, Layer } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import "leaflet-draw/dist/leaflet.draw.css";
-import { guessStatusStyle, mockFeatureCollection } from "@/utils/geo";
 import { getClient } from "@/lib/dataClient";
 
-// Mock de empreendimentos
-interface Emp {
+// Interface para empreendimentos do Supabase
+interface Empreendimento {
   id: string;
   nome: string;
-  stats: { lotes: number; vendidos: number; pct: number };
-  bounds: { sw: [number, number]; ne: [number, number] };
-  overlay?: { url: string; sw: [number, number]; ne: [number, number]; opacity?: number };
+  created_at: string;
 }
 
-const EMPREENDIMENTOS: Emp[] = [
-  {
-    id: "alpha",
-    nome: "Residencial Alpha",
-    stats: { lotes: 120, vendidos: 36, pct: 30 },
-    bounds: { sw: [-23.5492, -46.6409], ne: [-23.5465, -46.6365] },
-    overlay: { url: "/placeholder/masterplan-demo.jpg", sw: [-23.5492, -46.6409], ne: [-23.5465, -46.6365], opacity: 0.7 },
-  },
-  {
-    id: "beta",
-    nome: "Parque Beta",
-    stats: { lotes: 80, vendidos: 22, pct: 27 },
-    bounds: { sw: [-23.553, -46.642], ne: [-23.548, -46.635] },
-  },
-  {
-    id: "gamma",
-    nome: "Jardins Gamma",
-    stats: { lotes: 200, vendidos: 120, pct: 60 },
-    bounds: { sw: [-23.560, -46.650], ne: [-23.552, -46.640] },
-    overlay: { url: "/placeholder/masterplan-demo.jpg", sw: [-23.560, -46.650], ne: [-23.552, -46.640], opacity: 0.6 },
-  },
-];
-
-function SidebarEmpreendimentos({ onSelect, activeId }: { onSelect: (e: Emp) => void; activeId?: string; }) {
+function SidebarEmpreendimentos({ onSelect, activeId }: { onSelect: (e: Empreendimento) => void; activeId?: string; }) {
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("todos");
   const [periodo, setPeriodo] = useState("7");
+  const [empreendimentos, setEmpreendimentos] = useState<Empreendimento[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      const { supabase } = getClient();
+      const { data, error } = await supabase
+        .from('empreendimentos')
+        .select('id, nome, created_at')
+        .order('created_at', { ascending: false });
+      
+      if (!error && data) {
+        setEmpreendimentos(data);
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   const filtered = useMemo(() => {
-    return EMPREENDIMENTOS.filter(e => e.nome.toLowerCase().includes(q.toLowerCase()));
-  }, [q]);
+    return empreendimentos.filter(e => e.nome.toLowerCase().includes(q.toLowerCase()));
+  }, [q, empreendimentos]);
 
   return (
     <aside className="rounded-[14px] border border-border bg-secondary/60 p-3 h-full flex flex-col">
@@ -83,24 +73,28 @@ function SidebarEmpreendimentos({ onSelect, activeId }: { onSelect: (e: Emp) => 
 
       <ScrollArea className="mt-3 flex-1">
         <div className="space-y-2 pr-1">
-          {filtered.map((e) => (
-            <button
-              key={e.id}
-              onClick={() => onSelect(e)}
-              className={cn("w-full text-left rounded-md border border-border p-3 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary", activeId===e.id && "ring-2 ring-primary")}
-              aria-pressed={activeId===e.id}
-            >
-              <div className="flex items-center justify-between">
-                <div className="font-medium text-sm">{e.nome}</div>
-                <a href={`/admin?empreendimento=${e.id}`} onClick={(ev)=>ev.stopPropagation()} className="text-xs text-primary underline">Abrir no painel</a>
-              </div>
-              <div className="mt-2 flex items-center gap-2 text-xs">
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary">{e.stats.lotes} lotes</span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 text-accent">{e.stats.vendidos} vendidos</span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-muted text-foreground/80">{e.stats.pct}%</span>
-              </div>
-            </button>
-          ))}
+          {loading ? (
+            <div className="text-sm text-muted-foreground">Carregando...</div>
+          ) : filtered.length === 0 ? (
+            <div className="text-sm text-muted-foreground">Nenhum empreendimento encontrado</div>
+          ) : (
+            filtered.map((e) => (
+              <button
+                key={e.id}
+                onClick={() => onSelect(e)}
+                className={cn("w-full text-left rounded-md border border-border p-3 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary", activeId===e.id && "ring-2 ring-primary")}
+                aria-pressed={activeId===e.id}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="font-medium text-sm">{e.nome}</div>
+                  <a href={`/admin?empreendimento=${e.id}`} onClick={(ev)=>ev.stopPropagation()} className="text-xs text-primary underline">Abrir no painel</a>
+                </div>
+                <div className="mt-2 text-xs text-muted-foreground">
+                  Criado em: {new Date(e.created_at).toLocaleDateString('pt-BR')}
+                </div>
+              </button>
+            ))
+          )}
         </div>
       </ScrollArea>
 
@@ -113,9 +107,7 @@ function SidebarEmpreendimentos({ onSelect, activeId }: { onSelect: (e: Emp) => 
   );
 }
 
-function MapView({
-  selected,
-}: { selected?: Emp }) {
+function MapView({ selected }: { selected?: Empreendimento }) {
   const [map, setMap] = useState<L.Map | null>(null);
   const [base, setBase] = useState<'esri'|'osm'>('esri');
   const [showLots, setShowLots] = useState(true);
@@ -127,7 +119,7 @@ function MapView({
 
   // Initialize map
   useEffect(() => {
-    const container = document.getElementById('leaflet-map-int');
+    const container = document.getElementById('leaflet-map-real');
     if (map || !container) return;
     const m = L.map(container, {
       zoomControl: true,
@@ -150,42 +142,93 @@ function MapView({
     return () => { map.removeLayer(chosen); };
   }, [map, base]);
 
-  // When selected empreend changes, load data and fit bounds
+  // When selected empreendimento changes, load data from Supabase
   useEffect(() => {
     if (!map || !selected) return;
-    const bounds: LatLngBoundsExpression = [selected.bounds.sw, selected.bounds.ne];
-    map.fitBounds(bounds, { padding: [20,20] });
-
-    // loading state
+    
     setLoading(true);
-    const timer = setTimeout(() => {
-      // Load mock geojson
-      const fc = mockFeatureCollection();
-      const layer = L.geoJSON(fc as any, {
-        style: (feat: any) => guessStatusStyle(feat?.properties?.status),
-        onEachFeature: (feat, lyr) => {
-          const p: any = feat.properties || {};
-          const html = `<div class="text-xs"><div><strong>${p.codigo ?? 'Lote'}</strong></div><div>Status: ${p.status ?? '—'}</div>${p.area ? `<div>Área: ${p.area} m²</div>`:''}${p.preco ? `<div>Preço: R$ ${p.preco}</div>`:''}</div>`;
-          (lyr as any).bindPopup(html);
-        },
-      });
-      if (lotsLayer) map.removeLayer(lotsLayer);
-      setLotsLayer(layer);
-      if (showLots) layer.addTo(map);
+    
+    (async () => {
+      try {
+        const { supabase } = getClient();
+        
+        // Load lotes via RPC
+        const { data: fc, error: lotesError } = await supabase.rpc('lotes_geojson', { p_empreendimento: selected.id });
+        
+        if (!lotesError && fc) {
+          // Remove previous lots layer
+          if (lotsLayer) map.removeLayer(lotsLayer);
+          
+          // Create new lots layer
+          const layer = L.geoJSON(fc as any, {
+            style: (feat: any) => {
+              const status = feat?.properties?.status || 'disponivel';
+              switch (status) {
+                case 'disponivel': return { color: '#00C26E', fillColor: '#00C26E', fillOpacity: 0.25, weight: 2 };
+                case 'reservado': return { color: '#EAB308', fillColor: '#EAB308', fillOpacity: 0.25, weight: 2 };
+                case 'vendido': return { color: '#EF4444', fillColor: '#EF4444', fillOpacity: 0.25, weight: 2 };
+                default: return { color: '#22D3EE', fillColor: '#22D3EE', fillOpacity: 0.20, weight: 2 };
+              }
+            },
+            onEachFeature: (feat, lyr) => {
+              const p: any = feat.properties || {};
+              const html = `
+                <div class="text-xs">
+                  <div><strong>${p.codigo ?? 'Lote'}</strong></div>
+                  <div>Status: ${p.status ?? '—'}</div>
+                  ${p.area_m2 ? `<div>Área: ${p.area_m2} m²</div>` : ''}
+                  ${p.preco ? `<div>Preço: R$ ${p.preco.toLocaleString('pt-BR')}</div>` : ''}
+                </div>
+              `;
+              (lyr as any).bindPopup(html);
+            },
+          });
+          
+          setLotsLayer(layer);
+          if (showLots) layer.addTo(map);
 
-      // Overlay
-      if (overlayLayer) { map.removeLayer(overlayLayer); setOverlayLayer(null); }
-      if (selected.overlay && showOverlay) {
-        const img = L.imageOverlay(selected.overlay.url, [selected.overlay.sw, selected.overlay.ne] as any, { opacity: selected.overlay.opacity ?? opacity });
-        img.addTo(map);
-        setOverlayLayer(img);
+          // Fit bounds to the feature collection
+          if (fc.features && fc.features.length > 0) {
+            const group = L.geoJSON(fc as any);
+            map.fitBounds(group.getBounds(), { padding: [20, 20] });
+          }
+        }
+
+        // Load overlay
+        if (overlayLayer) { map.removeLayer(overlayLayer); setOverlayLayer(null); }
+        
+        const { data: overlay, error: overlayError } = await supabase
+          .from('masterplan_overlays')
+          .select('image_path, bounds, opacity')
+          .eq('empreendimento_id', selected.id)
+          .eq('is_active', true)
+          .maybeSingle();
+
+        if (!overlayError && overlay && showOverlay) {
+          // Get signed URL for the image
+          const { data: signed } = await supabase.storage
+            .from('masterplans')
+            .createSignedUrl(overlay.image_path, 60);
+          
+          if (signed?.signedUrl) {
+            // Convert bounds from GeoJSON Polygon to SW/NE
+            const coords = overlay.bounds.coordinates[0];
+            const sw: [number, number] = [coords[0][1], coords[0][0]]; // [lat, lng]
+            const ne: [number, number] = [coords[2][1], coords[2][0]]; // [lat, lng]
+            
+            const img = L.imageOverlay(signed.signedUrl, [sw, ne], { opacity: overlay.opacity ?? opacity });
+            img.addTo(map);
+            setOverlayLayer(img);
+          }
+        }
+
+      } catch (error) {
+        console.error('Erro ao carregar dados do empreendimento:', error);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    })();
+    
   }, [map, selected]);
 
   // Toggle showLots
@@ -196,26 +239,26 @@ function MapView({
 
   // Overlay visibility and opacity changes
   useEffect(() => {
-    if (!map) return;
-    if (overlayLayer) {
-      if (showOverlay) (overlayLayer as any).addTo(map); else map.removeLayer(overlayLayer);
+    if (!map || !overlayLayer) return;
+    if (showOverlay) {
+      if (!map.hasLayer(overlayLayer)) overlayLayer.addTo(map);
       if ((overlayLayer as any).setOpacity) (overlayLayer as any).setOpacity(opacity);
-    } else if (selected?.overlay && showOverlay) {
-      const img = L.imageOverlay(selected.overlay.url, [selected.overlay.sw, selected.overlay.ne] as any, { opacity });
-      img.addTo(map);
-      setOverlayLayer(img);
+    } else {
+      if (map.hasLayer(overlayLayer)) map.removeLayer(overlayLayer);
     }
-  }, [map, showOverlay, opacity, selected, overlayLayer]);
+  }, [map, showOverlay, opacity, overlayLayer]);
 
   const clearSelection = () => {
     setLoading(false);
     if (lotsLayer && map) map.removeLayer(lotsLayer);
     if (overlayLayer && map) map.removeLayer(overlayLayer);
+    setLotsLayer(null);
+    setOverlayLayer(null);
   };
 
   return (
     <div className="relative h-[60vh] lg:h-[calc(100vh-180px)] rounded-[14px] border border-border bg-secondary/60 overflow-hidden">
-      <div id="leaflet-map-int" className="absolute inset-0" />
+      <div id="leaflet-map-real" className="absolute inset-0" />
 
       {/* Topbar flutuante */}
       <div className="absolute left-3 top-3 z-40 rounded-md border border-border bg-background/90 backdrop-blur p-3 shadow">
@@ -256,17 +299,13 @@ function MapView({
   );
 }
 
-export default function AdminMapa() {
-  const [active, setActive] = useState<Emp | undefined>(undefined);
-  const { isMock } = getClient();
-  
-  useEffect(() => { 
-    document.title = `Mapa Interativo ${isMock ? '(Mock)' : ''} | BlockURB`; 
-  }, [isMock]);
+export default function AdminMapaReal() {
+  const [active, setActive] = useState<Empreendimento | undefined>(undefined);
+  useEffect(() => { document.title = "Mapa Interativo (Real) | BlockURB"; }, []);
 
   return (
     <Protected>
-      <AppShell menuKey="adminfilial" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Admin' }, { label: 'Mapa Interativo' }]}> 
+      <AppShell menuKey="adminfilial" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Admin' }, { label: 'Mapa Interativo (Real)' }]}> 
         <div className="grid gap-4 lg:grid-cols-[320px_minmax(0,1fr)] items-start">
           <div className="h-full">
             <SidebarEmpreendimentos onSelect={setActive} activeId={active?.id} />

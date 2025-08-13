@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import supabase from "@/lib/supabaseClient";
+import { getClient } from "@/lib/dataClient";
 
 export interface ResetFormProps {
   scope?: string | null;
@@ -16,6 +16,7 @@ export function ResetForm({ scope }: ResetFormProps) {
 
   const onSubmit = handleSubmit(async (data) => {
     setMsg(null); setError(null);
+    const { supabase } = getClient();
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const { error } = await supabase.auth.resetPasswordForEmail(data.email, { redirectTo: origin + '/reset/callback' });
     if (error) { setError(error.message || 'Falha ao enviar e-mail'); return; }

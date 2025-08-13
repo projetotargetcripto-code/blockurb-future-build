@@ -1,6 +1,7 @@
 import { PropsWithChildren, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/providers/AuthProvider";
+import { getClient } from "@/lib/dataClient";
 
 interface ProtectedProps {
   children: React.ReactNode;
@@ -12,19 +13,20 @@ export function Protected({ children, redirectTo = "/login", debugBypass = false
   const { session, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { isMock } = getClient();
 
   useEffect(() => {
     if (debugBypass) return; // show content regardless
-    if (!loading && !session) {
+    if (!loading && !session && !isMock) {
       const next = encodeURIComponent(location.pathname + location.search);
       const target = `${redirectTo}?next=${next}`;
       if (location.pathname !== redirectTo) {
         navigate(target, { replace: true, state: { from: location } });
       }
     }
-  }, [debugBypass, loading, session, navigate, location, redirectTo]);
+  }, [debugBypass, loading, session, navigate, location, redirectTo, isMock]);
 
-  if (debugBypass) return <>{children}</>;
+  if (debugBypass || isMock) return <>{children}</>;
 
   if (loading) {
     return (

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import supabase from "@/lib/supabaseClient";
+import { getClient } from "@/lib/dataClient";
 
 export default function Logout() {
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
+      const { supabase } = getClient();
       await supabase.auth.signOut();
       navigate("/login", { replace: true });
     })();

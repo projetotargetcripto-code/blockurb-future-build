@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import supabase from "@/lib/supabaseClient";
+import { getClient } from "@/lib/dataClient";
 
 interface AuthState {
   session: any | null;
@@ -18,6 +18,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Ensure fixed dark theme classes are present (uses design tokens)
     document.body.classList.add("bg-background", "text-foreground");
 
+    const { supabase, isMock } = getClient();
     let unsub: (() => void) | null = null;
 
     (async () => {

@@ -6,7 +6,7 @@ export default function EmpreendimentoNovo() {
   useEffect(() => { document.title = "Novo Empreendimento | BlockURB"; }, []);
 
   return (
-    <Protected debugBypass={true}>
+    <Protected>
       <AppShell menuKey="adminfilial" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Admin' }, { label: 'Empreendimentos' }, { label: 'Novo' }]}> 
         <header className="mb-4">
           <h1 className="text-2xl font-semibold">Novo Empreendimento</h1>
