@@ -18,6 +18,8 @@ import {
   Timer,
   HandCoins,
   Layers3,
+  BookOpen,
+  LayoutGrid,
 } from "lucide-react";
 import { StatsSection } from "@/components/sections/Stats";
 import { LogoRowSection } from "@/components/sections/LogoRow";
@@ -120,6 +122,36 @@ const Index = () => {
                 <span>Tokenização parcial para atrair investidores de todos os portes</span>
               </li>
             </ul>
+            <div className="mt-8 grid sm:grid-cols-2 gap-4">
+              <article className="group card-elevated bg-background/70 ring-1 ring-accent/20 hover:ring-primary/60 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30">
+                <div className="flex items-start gap-3">
+                  <span className="icon-chip w-12 h-12"><BookOpen className="text-primary size-8" /></span>
+                  <div>
+                    <h3 className="font-semibold">Whitepaper BlockURB</h3>
+                    <p className="text-muted-foreground text-sm">Visão, arquitetura e modelo</p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Link to="/whitepaper">
+                    <Button variant="cta" size="sm" className="hover-scale btn-glow">Ler o Whitepaper</Button>
+                  </Link>
+                </div>
+              </article>
+              <article className="group card-elevated bg-background/70 ring-1 ring-accent/20 hover:ring-primary/60 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30">
+                <div className="flex items-start gap-3">
+                  <span className="icon-chip w-12 h-12"><LayoutGrid className="text-accent size-8" /></span>
+                  <div>
+                    <h3 className="font-semibold">Hub de Painéis</h3>
+                    <p className="text-muted-foreground text-sm">Acesse todas as áreas exclusivas</p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Link to="/acesso">
+                    <Button variant="hero" size="sm" className="hover-scale btn-glow">Entrar no Hub</Button>
+                  </Link>
+                </div>
+              </article>
+            </div>
           </div>
           <div className="image-card relative">
             <img
@@ -346,33 +378,6 @@ const Index = () => {
             <a href="#contato">
               <Button variant="hero" size="lg" className="hover-scale btn-glow">Falar com Especialista</Button>
             </a>
-          </div>
-        </section>
-
-        {/* Whitepaper */}
-        <section id="whitepaper" className="container py-16 scroll-mt-24">
-          <h2 className="text-2xl sm:text-3xl font-semibold">Whitepaper</h2>
-          <div className="title-accent" />
-          <p className="mt-4 text-muted-foreground max-w-2xl">Conheça a visão, arquitetura e modelo de negócios da BlockURB.</p>
-          <div className="mt-6">
-            <Link to="/whitepaper">
-              <Button variant="hero" size="lg" className="hover-scale btn-glow">Ler o Whitepaper</Button>
-            </Link>
-          </div>
-        </section>
-
-        {/* Acesso ao Hub de Painéis */}
-        <section id="acesso" className="relative bg-muted/60 border-y border-border scroll-mt-24">
-          <div className="absolute inset-0 pattern-grid opacity-[0.06] pointer-events-none" aria-hidden />
-          <div className="container py-16">
-            <h2 className="text-2xl sm:text-3xl font-semibold">Acesso ao Hub de Painéis</h2>
-            <div className="title-accent" />
-            <p className="mt-4 text-muted-foreground max-w-2xl">Central de operações e indicadores da BlockURB.</p>
-            <div className="mt-6">
-              <Link to="/acesso">
-                <Button variant="cta" size="lg" className="hover-scale btn-glow">Entrar no Hub</Button>
-              </Link>
-            </div>
           </div>
         </section>
 
