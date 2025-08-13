@@ -132,8 +132,8 @@ const Index = () => {
         </section>
 
         {/* Problema */}
-        <section id="problema" className="relative bg-muted/60 border-y border-border scroll-mt-24">
-          <div className="absolute inset-0 pattern-circuit opacity-[0.06] pointer-events-none" aria-hidden />
+        <section id="problema" className="relative bg-muted/80 border-y border-border scroll-mt-24">
+          <div className="absolute inset-0 pattern-circuit opacity-[0.08] pointer-events-none" aria-hidden />
           <div className="container py-16">
             <h2 className="text-2xl sm:text-3xl font-semibold">Por que o modelo tradicional está ultrapassado?</h2>
             <div className="title-accent" />
@@ -188,7 +188,7 @@ const Index = () => {
 
         {/* Retorno Triplo */}
         <section id="retorno" className="relative container py-16 scroll-mt-24">
-          <div className="absolute inset-0 pattern-dots opacity-[0.05] pointer-events-none" aria-hidden />
+          <div className="absolute inset-0 pattern-dots opacity-[0.08] pointer-events-none" aria-hidden />
           <h2 className="text-2xl sm:text-3xl font-semibold">Três públicos, três fontes de retorno</h2>
           <div className="title-accent" />
           {/* Mobile Carousel */}
@@ -245,7 +245,7 @@ const Index = () => {
 
         {/* Modelo de Franquia */}
         <section id="franquia" className="relative container py-16 scroll-mt-24">
-          <div className="absolute inset-0 pattern-circuit opacity-[0.05] pointer-events-none" aria-hidden />
+          <div className="absolute inset-0 pattern-circuit opacity-[0.08] pointer-events-none" aria-hidden />
           <div className="max-w-3xl">
             <h2 className="text-2xl sm:text-3xl font-semibold">Modelo de Franquia</h2>
             <div className="title-accent" />
@@ -264,10 +264,9 @@ const Index = () => {
 
         {/* Benefícios da Tokenização */}
         <section id="beneficios" className="relative scroll-mt-24">
-          <div className="absolute inset-0 pattern-circuit opacity-[0.05] pointer-events-none" aria-hidden />
+          <div className="absolute inset-0 pattern-circuit opacity-[0.08] pointer-events-none" aria-hidden />
           <div className="container py-16">
             <h2 className="text-2xl sm:text-3xl font-semibold">Benefícios da Tokenização</h2>
-            <div className="title-accent" />
             <div className="title-accent" />
             <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="card-elevated ring-accent/20 bg-background/70">
@@ -296,7 +295,7 @@ const Index = () => {
 
         {/* Impacto Social */}
         <section id="impacto" className="relative container py-16 grid md:grid-cols-2 gap-10 items-center scroll-mt-24">
-          <div className="absolute inset-0 pattern-grid opacity-[0.05] pointer-events-none" aria-hidden />
+          <div className="absolute inset-0 pattern-grid opacity-[0.08] pointer-events-none" aria-hidden />
           <div className="image-card relative order-2 md:order-1">
             <img
               src={impactoImg}
@@ -323,7 +322,7 @@ const Index = () => {
 
         {/* Perfis */}
         <section id="perfis" className="relative container py-16 scroll-mt-24">
-          <div className="absolute inset-0 pattern-dots opacity-[0.05] pointer-events-none" aria-hidden />
+          <div className="absolute inset-0 pattern-dots opacity-[0.08] pointer-events-none" aria-hidden />
           <h2 className="text-2xl sm:text-3xl font-semibold">Perfis que Podem Franquear</h2>
           <div className="title-accent" />
           <p className="mt-4 text-muted-foreground max-w-3xl">
@@ -334,7 +333,7 @@ const Index = () => {
 
         {/* Próximos Passos */}
         <section id="passos" className="relative container py-16 scroll-mt-24">
-          <div className="absolute inset-0 pattern-dots opacity-[0.05] pointer-events-none" aria-hidden />
+          <div className="absolute inset-0 pattern-dots opacity-[0.08] pointer-events-none" aria-hidden />
           <h2 className="text-2xl sm:text-3xl font-semibold">Pronto para transformar sua região?</h2>
           <div className="title-accent" />
           <ol className="mt-6 space-y-4">
@@ -350,7 +349,8 @@ const Index = () => {
         </section>
 
         {/* Contato / Footer */}
-        <section id="contato" className="bg-muted/60 border-t border-border scroll-mt-24">
+        <section id="contato" className="relative bg-muted/80 border-t border-border scroll-mt-24">
+          <div className="absolute inset-0 pattern-circuit opacity-[0.08] pointer-events-none" aria-hidden />
           <footer className="container py-12 grid md:grid-cols-[1.2fr_1fr_auto] gap-8 items-center">
             <div>
               <div className="text-2xl font-bold"><span className="text-primary">Block</span>URB</div>
