@@ -25,6 +25,18 @@ import LoginInvestidor from "./pages/login/Investidor";
 import LoginTerrenista from "./pages/login/Terrenista";
 import { AuthProvider } from "@/providers/AuthProvider";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminPage from "./app/(panels)/admin/page";
+import SuperAdminPage from "./app/(panels)/super-admin/page";
+import UrbanismoPage from "./app/(panels)/urbanismo/page";
+import JuridicoPage from "./app/(panels)/juridico/page";
+import ContabilidadePage from "./app/(panels)/contabilidade/page";
+import MarketingPage from "./app/(panels)/marketing/page";
+import ComercialPage from "./app/(panels)/comercial/page";
+import ImobiliariaPage from "./app/(panels)/imobiliaria/page";
+import CorretorPage from "./app/(panels)/corretor/page";
+import ObrasPage from "./app/(panels)/obras/page";
+import InvestidorPage from "./app/(panels)/investidor/page";
+import TerrenistaPage from "./app/(panels)/terrenista/page";
 
 const queryClient = new QueryClient();
 
