@@ -81,6 +81,7 @@ const Index = () => {
               <h1 className="font-display text-3xl sm:text-5xl font-extrabold leading-tight gradient-text">
                 A Nova Geração de Urbanização Inteligente
               </h1>
+              <div className="title-accent" />
               <p className="mt-4 text-base sm:text-lg text-muted-foreground">
                 Franquia BlockURB — Urbanismo + Tecnologia + Tokenização Parcial
               </p>
@@ -100,6 +101,7 @@ const Index = () => {
         <section id="sobre" className="container py-16 grid md:grid-cols-2 gap-10 items-center scroll-mt-24">
           <div>
             <h2 className="text-2xl sm:text-3xl font-semibold">Sobre a BlockURB</h2>
+            <div className="title-accent" />
             <p className="mt-4 text-muted-foreground">
               Somos uma urbanizadora moderna que transforma glebas em projetos de alto valor, unindo franquia, tecnologia e tokenização parcial para acelerar vendas e reduzir riscos.
             </p>
@@ -130,9 +132,11 @@ const Index = () => {
         </section>
 
         {/* Problema */}
-        <section id="problema" className="bg-muted/60 border-y border-border scroll-mt-24">
+        <section id="problema" className="relative bg-muted/60 border-y border-border scroll-mt-24">
+          <div className="absolute inset-0 pattern-circuit opacity-[0.06] pointer-events-none" aria-hidden />
           <div className="container py-16">
             <h2 className="text-2xl sm:text-3xl font-semibold">Por que o modelo tradicional está ultrapassado?</h2>
+            <div className="title-accent" />
             <div className="mt-8 grid md:grid-cols-3 gap-6">
               <div className="card-elevated ring-accent/20 hover:ring-accent/40">
                 <span className="icon-chip w-10 h-10"><HandCoins className="text-accent" /></span>
@@ -183,8 +187,10 @@ const Index = () => {
         <LogoRowSection />
 
         {/* Retorno Triplo */}
-        <section id="retorno" className="container py-16 scroll-mt-24">
+        <section id="retorno" className="relative container py-16 scroll-mt-24">
+          <div className="absolute inset-0 pattern-dots opacity-[0.05] pointer-events-none" aria-hidden />
           <h2 className="text-2xl sm:text-3xl font-semibold">Três públicos, três fontes de retorno</h2>
+          <div className="title-accent" />
           {/* Mobile Carousel */}
           <div className="mt-8 md:hidden">
             <Carousel>
@@ -238,9 +244,11 @@ const Index = () => {
         </section>
 
         {/* Modelo de Franquia */}
-        <section id="franquia" className="container py-16 scroll-mt-24">
+        <section id="franquia" className="relative container py-16 scroll-mt-24">
+          <div className="absolute inset-0 pattern-circuit opacity-[0.05] pointer-events-none" aria-hidden />
           <div className="max-w-3xl">
             <h2 className="text-2xl sm:text-3xl font-semibold">Modelo de Franquia</h2>
+            <div className="title-accent" />
             <p className="mt-4 text-muted-foreground">
               Você opera com exclusividade territorial e suporte completo da BlockURB.
             </p>
@@ -255,9 +263,12 @@ const Index = () => {
         </section>
 
         {/* Benefícios da Tokenização */}
-        <section id="beneficios" className="scroll-mt-24">
+        <section id="beneficios" className="relative scroll-mt-24">
+          <div className="absolute inset-0 pattern-circuit opacity-[0.05] pointer-events-none" aria-hidden />
           <div className="container py-16">
             <h2 className="text-2xl sm:text-3xl font-semibold">Benefícios da Tokenização</h2>
+            <div className="title-accent" />
+            <div className="title-accent" />
             <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="card-elevated ring-accent/20 bg-background/70">
                 <span className="icon-chip w-10 h-10"><Rocket className="text-primary"/></span>
@@ -284,7 +295,8 @@ const Index = () => {
         </section>
 
         {/* Impacto Social */}
-        <section id="impacto" className="container py-16 grid md:grid-cols-2 gap-10 items-center scroll-mt-24">
+        <section id="impacto" className="relative container py-16 grid md:grid-cols-2 gap-10 items-center scroll-mt-24">
+          <div className="absolute inset-0 pattern-grid opacity-[0.05] pointer-events-none" aria-hidden />
           <div className="image-card relative order-2 md:order-1">
             <img
               src={impactoImg}
@@ -296,6 +308,7 @@ const Index = () => {
           </div>
           <div className="order-1 md:order-2">
             <h2 className="text-2xl sm:text-3xl font-semibold">Impacto Social</h2>
+            <div className="title-accent" />
             <p className="mt-4 text-muted-foreground">
               Mais do que empreendimentos, criamos comunidades planejadas e oportunidades reais de valorização.
             </p>
@@ -309,8 +322,10 @@ const Index = () => {
         <FAQSection />
 
         {/* Perfis */}
-        <section id="perfis" className="container py-16 scroll-mt-24">
+        <section id="perfis" className="relative container py-16 scroll-mt-24">
+          <div className="absolute inset-0 pattern-dots opacity-[0.05] pointer-events-none" aria-hidden />
           <h2 className="text-2xl sm:text-3xl font-semibold">Perfis que Podem Franquear</h2>
+          <div className="title-accent" />
           <p className="mt-4 text-muted-foreground max-w-3xl">
             Investidores, incorporadoras, empreendedores, arquitetos, engenheiros, advogados, produtores rurais, donos de imobiliárias.
           </p>
@@ -318,8 +333,10 @@ const Index = () => {
         </section>
 
         {/* Próximos Passos */}
-        <section id="passos" className="container py-16 scroll-mt-24">
+        <section id="passos" className="relative container py-16 scroll-mt-24">
+          <div className="absolute inset-0 pattern-dots opacity-[0.05] pointer-events-none" aria-hidden />
           <h2 className="text-2xl sm:text-3xl font-semibold">Pronto para transformar sua região?</h2>
+          <div className="title-accent" />
           <ol className="mt-6 space-y-4">
             <li className="flex gap-3"><span className="font-semibold">1.</span> Agende um diagnóstico do território</li>
             <li className="flex gap-3"><span className="font-semibold">2.</span> Receba análise de viabilidade e plano tokenizado</li>
