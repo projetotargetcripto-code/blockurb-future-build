@@ -19,6 +19,11 @@ import {
   HandCoins,
   Layers3,
 } from "lucide-react";
+import { StatsSection } from "@/components/sections/Stats";
+import { LogoRowSection } from "@/components/sections/LogoRow";
+import { TestimonialsSection } from "@/components/sections/Testimonials";
+import { FAQSection } from "@/components/sections/FAQ";
+import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import heroImg from "@/assets/hero-blockurb.webp";
 import aboutImg from "@/assets/about-blockurb.webp";
 import impactoImg from "@/assets/impacto-blockurb.webp";
@@ -27,7 +32,7 @@ import qrImg from "@/assets/qr-agendamento.webp";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur border-b border-border">
+      <header className="sticky top-0 z-40 glass">
         <nav className="container flex items-center justify-between h-14">
           <a href="#" className="font-bold tracking-tight text-lg">
             <span className="text-primary">Block</span>URB
@@ -57,6 +62,7 @@ const Index = () => {
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
+            <div className="absolute inset-0 pattern-grid opacity-20 pointer-events-none" />
           </div>
 
           <div className="relative container min-h-[70vh] sm:min-h-[78vh] flex items-center">
@@ -64,7 +70,7 @@ const Index = () => {
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-xs">
                 <BadgeCheck className="opacity-80" /> Licenças limitadas por território
               </div>
-              <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
+              <h1 className="font-display text-3xl sm:text-5xl font-extrabold leading-tight gradient-text">
                 A Nova Geração de Urbanização Inteligente
               </h1>
               <p className="mt-4 text-base sm:text-lg text-muted-foreground">
@@ -161,6 +167,9 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <StatsSection />
+        <LogoRowSection />
 
         {/* Retorno Triplo */}
         <section id="retorno" className="container py-16">
@@ -263,6 +272,9 @@ const Index = () => {
           </div>
         </section>
 
+        <TestimonialsSection />
+        <FAQSection />
+
         {/* Perfis */}
         <section id="perfis" className="container py-16">
           <h2 className="text-2xl sm:text-3xl font-semibold">Perfis que Podem Franquear</h2>
@@ -324,6 +336,7 @@ const Index = () => {
           <Button variant="cta" size="lg" className="hover-scale shadow-lg">Falar com Especialista</Button>
         </a>
       </div>
+      <WhatsAppFloat />
     </div>
   );
 };
