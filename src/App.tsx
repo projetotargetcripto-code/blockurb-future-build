@@ -26,6 +26,7 @@ import LoginTerrenista from "./pages/login/Terrenista";
 import { AuthProvider } from "@/providers/AuthProvider";
 import { PanelHomePage, PanelSectionPage } from "@/components/panels/PanelPages";
 import EmpreendimentoNovo from "./pages/admin/EmpreendimentoNovo";
+import AdminMapa from "./pages/admin/Mapa";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +79,7 @@ const App = () => (
             {/* Alias antigo */}
             <Route path="/admin" element={<PanelHomePage menuKey="adminfilial" title="Admin Filial" />} />
             <Route path="/admin/empreendimentos/novo" element={<EmpreendimentoNovo />} />
+            <Route path="/admin/mapa" element={<AdminMapa />} />
             {/* Urbanista */}
             <Route path="/urbanista" element={<PanelHomePage menuKey="urbanista" title="Urbanista" />} />
             <Route path="/urbanista/relatorios" element={<PanelSectionPage menuKey="urbanista" title="Urbanista" section="Relatórios" />} />
