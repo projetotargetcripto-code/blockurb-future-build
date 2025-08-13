@@ -28,8 +28,15 @@ import heroImg from "@/assets/hero-blockurb.webp";
 import aboutImg from "@/assets/about-blockurb.webp";
 import impactoImg from "@/assets/impacto-blockurb.webp";
 import qrImg from "@/assets/qr-agendamento.webp";
+import { cn } from "@/lib/utils";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { useParallax } from "@/hooks/useParallax";
 
 const Index = () => {
+  const sectionIds = ["sobre","solucao","franquia","beneficios","passos","contato"];
+  const activeSection = useScrollSpy(sectionIds, { rootMargin: "-45% 0px -45% 0px" });
+  const { ref: heroParallaxRef, style: heroParallaxStyle } = useParallax(0.25);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 glass">
@@ -38,13 +45,13 @@ const Index = () => {
             <span className="text-primary">Block</span>URB
           </a>
           <div className="hidden sm:flex items-center gap-3">
-            <a href="#sobre" className="story-link text-sm">Sobre</a>
-            <a href="#solucao" className="story-link text-sm">Solução</a>
-            <a href="#franquia" className="story-link text-sm">Franquia</a>
-            <a href="#beneficios" className="story-link text-sm">Tokenização</a>
-            <a href="#passos" className="story-link text-sm">Próximos passos</a>
+            <a href="#sobre" className={cn("story-link text-sm", activeSection==="sobre" && "text-primary")} aria-current={activeSection==="sobre" ? "page" : undefined}>Sobre</a>
+            <a href="#solucao" className={cn("story-link text-sm", activeSection==="solucao" && "text-primary")} aria-current={activeSection==="solucao" ? "page" : undefined}>Solução</a>
+            <a href="#franquia" className={cn("story-link text-sm", activeSection==="franquia" && "text-primary")} aria-current={activeSection==="franquia" ? "page" : undefined}>Franquia</a>
+            <a href="#beneficios" className={cn("story-link text-sm", activeSection==="beneficios" && "text-primary")} aria-current={activeSection==="beneficios" ? "page" : undefined}>Tokenização</a>
+            <a href="#passos" className={cn("story-link text-sm", activeSection==="passos" && "text-primary")} aria-current={activeSection==="passos" ? "page" : undefined}>Próximos passos</a>
             <a href="#contato">
-              <Button variant="cta" size="sm" className="hover-scale">Falar com Especialista</Button>
+              <Button variant="cta" size="sm" className="hover-scale btn-glow">Falar com Especialista</Button>
             </a>
           </div>
         </nav>
@@ -62,10 +69,10 @@ const Index = () => {
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
-            <div className="absolute inset-0 pattern-grid opacity-20 pointer-events-none" />
+            <div className="absolute inset-0 pattern-grid opacity-20 pointer-events-none" ref={heroParallaxRef} style={heroParallaxStyle} />
           </div>
 
-          <div className="relative container min-h-[70vh] sm:min-h-[78vh] flex items-center">
+          <div className="relative container min-h-[70vh] sm:min-h-[78vh] flex items-center animate-enter">
             <div className="max-w-2xl py-16">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-xs">
                 <BadgeCheck className="opacity-80" /> Licenças limitadas por território
@@ -78,10 +85,10 @@ const Index = () => {
               </p>
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <a href="#franquia">
-                  <Button variant="hero" size="lg" className="hover-scale">Garanta sua Região</Button>
+                  <Button variant="hero" size="lg" className="hover-scale btn-glow">Garanta sua Região</Button>
                 </a>
                 <a href="#contato">
-                  <Button variant="cta" size="lg" className="hover-scale">Falar com Especialista</Button>
+                  <Button variant="cta" size="lg" className="hover-scale btn-glow">Falar com Especialista</Button>
                 </a>
               </div>
             </div>
@@ -89,7 +96,7 @@ const Index = () => {
         </section>
 
         {/* Sobre */}
-        <section id="sobre" className="container py-16 grid md:grid-cols-2 gap-10 items-center">
+        <section id="sobre" className="container py-16 grid md:grid-cols-2 gap-10 items-center scroll-mt-24">
           <div>
             <h2 className="text-2xl sm:text-3xl font-semibold">Sobre a BlockURB</h2>
             <p className="mt-4 text-muted-foreground">
@@ -110,7 +117,7 @@ const Index = () => {
               </li>
             </ul>
           </div>
-          <div className="relative rounded-lg overflow-hidden border border-border">
+          <div className="image-card relative">
             <img
               src={aboutImg}
               alt="Ilustração de masterplan e urbanização planejada"
@@ -122,19 +129,19 @@ const Index = () => {
         </section>
 
         {/* Problema */}
-        <section id="problema" className="bg-muted/60 border-y border-border">
+        <section id="problema" className="bg-muted/60 border-y border-border scroll-mt-24">
           <div className="container py-16">
             <h2 className="text-2xl sm:text-3xl font-semibold">Por que o modelo tradicional está ultrapassado?</h2>
             <div className="mt-8 grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg border border-border bg-background">
+              <div className="card-elevated">
                 <HandCoins />
                 <p className="mt-3">Investimento imobiliário restrito a grandes players</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-background">
+              <div className="card-elevated">
                 <Timer />
                 <p className="mt-3">Urbanização lenta e com altos custos</p>
               </div>
-              <div className="p-6 rounded-lg border border-border bg-background">
+              <div className="card-elevated">
                 <Layers3 />
                 <p className="mt-3">Distratos e gargalos administrativos</p>
               </div>
@@ -143,7 +150,7 @@ const Index = () => {
         </section>
 
         {/* Solução */}
-        <section id="solucao" className="container py-16">
+        <section id="solucao" className="container py-16 scroll-mt-24">
           <h2 className="text-2xl sm:text-3xl font-semibold">Urbanismo Inteligente + Tokenização Parcial</h2>
           <p className="mt-4 text-muted-foreground max-w-3xl">
             Um modelo plug-and-play que une o melhor do mercado tradicional com o futuro dos investimentos. A tokenização parcial permite que pequenos investidores participem, sem eliminar o formato convencional de aquisição de lotes.
@@ -172,26 +179,26 @@ const Index = () => {
         <LogoRowSection />
 
         {/* Retorno Triplo */}
-        <section id="retorno" className="container py-16">
+        <section id="retorno" className="container py-16 scroll-mt-24">
           <h2 className="text-2xl sm:text-3xl font-semibold">Três públicos, três fontes de retorno</h2>
           {/* Mobile Carousel */}
           <div className="mt-8 md:hidden">
             <Carousel>
               <CarouselContent>
                 <CarouselItem>
-                  <div className="p-6 rounded-lg border border-border bg-background">
+                  <div className="card-elevated">
                     <h3 className="font-semibold">Franqueado</h3>
                     <p className="text-muted-foreground mt-2">Lucro recorrente com vendas e valorização</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="p-6 rounded-lg border border-border bg-background">
+                  <div className="card-elevated">
                     <h3 className="font-semibold">Investidor</h3>
                     <p className="text-muted-foreground mt-2">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="p-6 rounded-lg border border-border bg-background">
+                  <div className="card-elevated">
                     <h3 className="font-semibold">Terrenista</h3>
                     <p className="text-muted-foreground mt-2">Monetização rápida da gleba com valorização antecipada</p>
                   </div>
@@ -205,15 +212,15 @@ const Index = () => {
           </div>
           {/* Desktop Cards */}
           <div className="mt-8 hidden md:grid md:grid-cols-3 gap-6">
-            <article className="p-6 rounded-lg border border-border bg-background">
+            <article className="card-elevated">
               <h3 className="font-semibold">Franqueado</h3>
               <p className="text-muted-foreground mt-2">Lucro recorrente com vendas e valorização</p>
             </article>
-            <article className="p-6 rounded-lg border border-border bg-background">
+            <article className="card-elevated">
               <h3 className="font-semibold">Investidor</h3>
               <p className="text-muted-foreground mt-2">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
             </article>
-            <article className="p-6 rounded-lg border border-border bg-background">
+            <article className="card-elevated">
               <h3 className="font-semibold">Terrenista</h3>
               <p className="text-muted-foreground mt-2">Monetização rápida da gleba com valorização antecipada</p>
             </article>
@@ -221,7 +228,7 @@ const Index = () => {
         </section>
 
         {/* Modelo de Franquia */}
-        <section id="franquia" className="container py-16">
+        <section id="franquia" className="container py-16 scroll-mt-24">
           <div className="max-w-3xl">
             <h2 className="text-2xl sm:text-3xl font-semibold">Modelo de Franquia</h2>
             <p className="mt-4 text-muted-foreground">
@@ -238,21 +245,21 @@ const Index = () => {
         </section>
 
         {/* Benefícios da Tokenização */}
-        <section id="beneficios" className="bg-accent">
+        <section id="beneficios" className="bg-accent scroll-mt-24">
           <div className="container py-16 text-accent-foreground">
             <h2 className="text-2xl sm:text-3xl font-semibold">Benefícios da Tokenização</h2>
             <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="p-5 rounded-lg bg-background/70 border border-border"><Rocket className="text-primary"/> <p className="mt-2">Captação mais rápida</p></div>
-              <div className="p-5 rounded-lg bg-background/70 border border-border"><HandCoins className="text-primary"/> <p className="mt-2">Menos risco de capital próprio</p></div>
-              <div className="p-5 rounded-lg bg-background/70 border border-border"><Users className="text-primary"/> <p className="mt-2">Comunidade de investidores em cada projeto</p></div>
-              <div className="p-5 rounded-lg bg-background/70 border border-border"><Coins className="text-primary"/> <p className="mt-2">Facilidade de revenda de cotas</p></div>
+              <div className="card-elevated bg-background/70"><Rocket className="text-primary"/> <p className="mt-2">Captação mais rápida</p></div>
+              <div className="card-elevated bg-background/70"><HandCoins className="text-primary"/> <p className="mt-2">Menos risco de capital próprio</p></div>
+              <div className="card-elevated bg-background/70"><Users className="text-primary"/> <p className="mt-2">Comunidade de investidores em cada projeto</p></div>
+              <div className="card-elevated bg-background/70"><Coins className="text-primary"/> <p className="mt-2">Facilidade de revenda de cotas</p></div>
             </div>
           </div>
         </section>
 
         {/* Impacto Social */}
-        <section id="impacto" className="container py-16 grid md:grid-cols-2 gap-10 items-center">
-          <div className="relative rounded-lg overflow-hidden border border-border order-2 md:order-1">
+        <section id="impacto" className="container py-16 grid md:grid-cols-2 gap-10 items-center scroll-mt-24">
+          <div className="image-card relative order-2 md:order-1">
             <img
               src={impactoImg}
               alt="Bairro sustentável e integrado socialmente"
@@ -276,7 +283,7 @@ const Index = () => {
         <FAQSection />
 
         {/* Perfis */}
-        <section id="perfis" className="container py-16">
+        <section id="perfis" className="container py-16 scroll-mt-24">
           <h2 className="text-2xl sm:text-3xl font-semibold">Perfis que Podem Franquear</h2>
           <p className="mt-4 text-muted-foreground max-w-3xl">
             Investidores, incorporadoras, empreendedores, arquitetos, engenheiros, advogados, produtores rurais, donos de imobiliárias.
@@ -285,7 +292,7 @@ const Index = () => {
         </section>
 
         {/* Próximos Passos */}
-        <section id="passos" className="container py-16">
+        <section id="passos" className="container py-16 scroll-mt-24">
           <h2 className="text-2xl sm:text-3xl font-semibold">Pronto para transformar sua região?</h2>
           <ol className="mt-6 space-y-4">
             <li className="flex gap-3"><span className="font-semibold">1.</span> Agende um diagnóstico do território</li>
@@ -294,13 +301,13 @@ const Index = () => {
           </ol>
           <div className="mt-6">
             <a href="#contato">
-              <Button variant="hero" size="lg" className="hover-scale">Falar com Especialista</Button>
+              <Button variant="hero" size="lg" className="hover-scale btn-glow">Falar com Especialista</Button>
             </a>
           </div>
         </section>
 
         {/* Contato / Footer */}
-        <section id="contato" className="bg-muted/60 border-t border-border">
+        <section id="contato" className="bg-muted/60 border-t border-border scroll-mt-24">
           <footer className="container py-12 grid md:grid-cols-[1.2fr_1fr_auto] gap-8 items-center">
             <div>
               <div className="text-2xl font-bold"><span className="text-primary">Block</span>URB</div>
@@ -325,7 +332,7 @@ const Index = () => {
       <div className="fixed bottom-0 inset-x-0 sm:hidden z-50 bg-background/95 backdrop-blur border-t border-border p-3">
         <div className="container">
           <a href="#contato">
-            <Button variant="hero" className="w-full hover-scale">Falar com Especialista</Button>
+            <Button variant="hero" className="w-full hover-scale btn-glow">Falar com Especialista</Button>
           </a>
         </div>
       </div>
@@ -333,7 +340,7 @@ const Index = () => {
       {/* CTA flutuante desktop */}
       <div className="hidden sm:block fixed bottom-6 right-6 z-50">
         <a href="#contato">
-          <Button variant="cta" size="lg" className="hover-scale shadow-lg">Falar com Especialista</Button>
+          <Button variant="cta" size="lg" className="hover-scale btn-glow">Falar com Especialista</Button>
         </a>
       </div>
       <WhatsAppFloat />
