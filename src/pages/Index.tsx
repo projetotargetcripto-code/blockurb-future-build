@@ -31,6 +31,7 @@ import qrImg from "@/assets/qr-agendamento.webp";
 import { cn } from "@/lib/utils";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useParallax } from "@/hooks/useParallax";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const sectionIds = ["sobre","solucao","franquia","beneficios","passos","contato"];
@@ -345,6 +346,33 @@ const Index = () => {
             <a href="#contato">
               <Button variant="hero" size="lg" className="hover-scale btn-glow">Falar com Especialista</Button>
             </a>
+          </div>
+        </section>
+
+        {/* Whitepaper */}
+        <section id="whitepaper" className="container py-16 scroll-mt-24">
+          <h2 className="text-2xl sm:text-3xl font-semibold">Whitepaper</h2>
+          <div className="title-accent" />
+          <p className="mt-4 text-muted-foreground max-w-2xl">Conheça a visão, arquitetura e modelo de negócios da BlockURB.</p>
+          <div className="mt-6">
+            <Link to="/whitepaper">
+              <Button variant="hero" size="lg" className="hover-scale btn-glow">Ler o Whitepaper</Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* Acesso ao Hub de Painéis */}
+        <section id="acesso" className="relative bg-muted/60 border-y border-border scroll-mt-24">
+          <div className="absolute inset-0 pattern-grid opacity-[0.06] pointer-events-none" aria-hidden />
+          <div className="container py-16">
+            <h2 className="text-2xl sm:text-3xl font-semibold">Acesso ao Hub de Painéis</h2>
+            <div className="title-accent" />
+            <p className="mt-4 text-muted-foreground max-w-2xl">Central de operações e indicadores da BlockURB.</p>
+            <div className="mt-6">
+              <Link to="/acesso">
+                <Button variant="cta" size="lg" className="hover-scale btn-glow">Entrar no Hub</Button>
+              </Link>
+            </div>
           </div>
         </section>
 
