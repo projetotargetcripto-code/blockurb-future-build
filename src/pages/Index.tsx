@@ -405,14 +405,6 @@ const Index = () => {
         </section>
       </main>
 
-      {/* CTA fixo mobile */}
-      <div className="fixed bottom-0 inset-x-0 sm:hidden z-50 bg-background/95 backdrop-blur border-t border-border p-3">
-        <div className="container">
-          <a href="#contato">
-            <Button variant="hero" className="w-full hover-scale btn-glow">Falar com Especialista</Button>
-          </a>
-        </div>
-      </div>
 
       <WhatsAppFloat label="Falar com Especialista" />
 

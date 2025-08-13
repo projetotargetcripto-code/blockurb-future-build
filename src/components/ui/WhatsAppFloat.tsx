@@ -18,7 +18,7 @@ export function WhatsAppFloat({
       rel="noopener noreferrer"
       aria-label="Falar com Especialista no WhatsApp"
       className={
-        "hidden sm:inline-flex fixed bottom-6 right-6 z-50 items-center gap-2 h-12 px-4 rounded-full bg-accent text-accent-foreground shadow-lg transition-transform duration-200 hover:scale-105 " +
+        "inline-flex fixed bottom-6 right-6 z-50 items-center gap-2 h-12 px-4 rounded-full bg-accent text-accent-foreground shadow-lg transition-transform duration-200 hover:scale-105 " +
         (className ?? "")
       }
     >
