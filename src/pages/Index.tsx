@@ -44,8 +44,9 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 glass">
         <nav className="container flex items-center justify-between h-14">
-          <a href="#" className="font-bold tracking-tight text-lg">
-            <span className="text-primary">Block</span>URB
+          <a href="#" className="flex items-center gap-2 font-bold tracking-tight text-lg" aria-label="BlockURB - topo da página">
+            <img src="/lovable-uploads/69c3ca3e-8a72-4b83-8f97-2ffdd18f9508.png" alt="Símbolo BlockURB" className="h-6 w-6 rounded-sm" loading="lazy" decoding="async" />
+            <span><span className="text-primary">Block</span>URB</span>
           </a>
           <div className="hidden sm:flex items-center gap-3">
             <a href="#sobre" className={cn("story-link text-sm", activeSection==="sobre" && "text-primary")} aria-current={activeSection==="sobre" ? "page" : undefined}>Sobre</a>

@@ -57,7 +57,10 @@ export function AppSidebar({ menuKey }: { menuKey?: string }) {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <div className="px-2 py-2 text-sm font-semibold">Navegação</div>
+        <div className="px-2 py-3 flex items-center gap-2">
+          <img src="/lovable-uploads/69c3ca3e-8a72-4b83-8f97-2ffdd18f9508.png" alt="Símbolo BlockURB" className="h-6 w-6 rounded-sm" loading="lazy" decoding="async" />
+          <span className="text-sm font-semibold">BlockURB</span>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

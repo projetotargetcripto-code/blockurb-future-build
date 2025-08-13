@@ -15,7 +15,10 @@ export function Topbar({ breadcrumbs }: { breadcrumbs?: { label: string; href?: 
     <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur">
       <div className="h-14 container flex items-center gap-3">
         <SidebarTrigger className="mr-2" aria-label="Alternar menu" />
-        <a href="/" className="font-bold tracking-tight text-lg"><span className="text-primary">Block</span>URB</a>
+        <a href="/" className="flex items-center gap-2 font-bold tracking-tight text-lg" aria-label="Ir para a página inicial">
+          <img src="/lovable-uploads/69c3ca3e-8a72-4b83-8f97-2ffdd18f9508.png" alt="Símbolo BlockURB" className="h-6 w-6 rounded-sm" loading="lazy" decoding="async" />
+          <span><span className="text-primary">Block</span>URB</span>
+        </a>
 
         <div className="flex-1 max-w-xl ml-4 hidden md:block">
           <div className="relative">
