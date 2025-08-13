@@ -131,4 +131,31 @@ All colors MUST be HSL.
   .story-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
   .story-link[aria-current="page"] { @apply text-primary; }
   .story-link[aria-current="page"]::after { transform: scaleX(1); transform-origin: bottom left; }
+
+  /* Golden glow utility for spotlight cards */
+  .glow-gold { position: relative; }
+  .glow-gold::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: radial-gradient(60% 60% at 50% 50%, hsl(var(--accent) / 0.22), transparent 70%);
+    filter: blur(12px);
+    opacity: .8;
+    transition: opacity .3s ease, transform .3s ease, box-shadow .3s ease;
+    animation: gold-pulse 2.2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .glow-gold:hover::after {
+    opacity: 1;
+    transform: scale(1.06);
+    box-shadow: 0 0 48px 12px hsl(var(--accent) / 0.35);
+  }
+  .glow-gold > * { position: relative; z-index: 1; }
 }
+@keyframes gold-pulse {
+  0%, 100% { box-shadow: 0 0 24px 6px hsl(var(--accent) / 0.22); }
+  50% { box-shadow: 0 0 36px 10px hsl(var(--accent) / 0.30); }
+}
+

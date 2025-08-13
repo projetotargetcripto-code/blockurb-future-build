@@ -123,7 +123,7 @@ const Index = () => {
               </li>
             </ul>
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
-              <article className="group card-elevated bg-background/70 ring-1 ring-accent/20 hover:ring-primary/60 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30">
+              <article className="group glow-gold card-elevated bg-background/70 ring-1 ring-accent/20 hover:ring-primary/60 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30">
                 <div className="flex items-start gap-3">
                   <span className="icon-chip w-12 h-12"><BookOpen className="text-primary size-8" /></span>
                   <div>
@@ -131,13 +131,13 @@ const Index = () => {
                     <p className="text-muted-foreground text-sm">Visão, arquitetura e modelo</p>
                   </div>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 flex justify-center">
                   <Link to="/whitepaper">
                     <Button variant="cta" size="sm" className="hover-scale btn-glow">Ler o Whitepaper</Button>
                   </Link>
                 </div>
               </article>
-              <article className="group card-elevated bg-background/70 ring-1 ring-accent/20 hover:ring-primary/60 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30">
+              <article className="group glow-gold card-elevated bg-background/70 ring-1 ring-accent/20 hover:ring-primary/60 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30">
                 <div className="flex items-start gap-3">
                   <span className="icon-chip w-12 h-12"><LayoutGrid className="text-accent size-8" /></span>
                   <div>
@@ -145,7 +145,7 @@ const Index = () => {
                     <p className="text-muted-foreground text-sm">Acesse todas as áreas exclusivas</p>
                   </div>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 flex justify-center">
                   <Link to="/acesso">
                     <Button variant="hero" size="sm" className="hover-scale btn-glow">Entrar no Hub</Button>
                   </Link>
