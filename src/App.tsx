@@ -24,6 +24,7 @@ import LoginObras from "./pages/login/Obras";
 import LoginInvestidor from "./pages/login/Investidor";
 import LoginTerrenista from "./pages/login/Terrenista";
 import { AuthProvider } from "@/providers/AuthProvider";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,9 @@ const App = () => (
             <Route path="/login/obras" element={<LoginObras />} />
             <Route path="/login/investidor" element={<LoginInvestidor />} />
             <Route path="/login/terrenista" element={<LoginTerrenista />} />
+
+            {/* Example admin shell */}
+            <Route path="/admin" element={<AdminDashboard />} />
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

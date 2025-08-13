@@ -7,7 +7,7 @@ All colors MUST be HSL.
 */
 
 @layer base {
-:root {
+  :root {
     --background: 165 25% 7%; /* #0D1714 base escura */
     --foreground: 0 0% 100%; /* branco */
 
@@ -50,6 +50,14 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 222.2 47.4% 11.2%;
     --sidebar-border: 165 10% 18%;
     --sidebar-ring: 156 100% 38%;
+
+    /* Aliases for app shell tokens */
+    --bg: var(--background);
+    --bg-2: var(--card);
+    --text: var(--foreground);
+    --text-2: var(--muted-foreground);
+    --primary-2: 156 86% 48%;
+    --stroke: var(--border);
   }
 
   .dark {
@@ -153,6 +161,9 @@ All colors MUST be HSL.
     box-shadow: 0 0 48px 12px hsl(var(--accent) / 0.35);
   }
   .glow-gold > * { position: relative; z-index: 1; }
+
+  /* App shell helpers */
+  .shadow-elevated { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.4); }
 }
 @keyframes gold-pulse {
   0%, 100% { box-shadow: 0 0 24px 6px hsl(var(--accent) / 0.22); }
