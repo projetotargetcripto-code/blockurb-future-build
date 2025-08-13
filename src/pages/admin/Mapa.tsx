@@ -12,7 +12,6 @@ import L, { LatLngBoundsExpression, Layer } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 import { guessStatusStyle, mockFeatureCollection } from "@/utils/geo";
-import { getClient } from "@/lib/dataClient";
 
 // Mock de empreendimentos
 interface Emp {
@@ -258,11 +257,10 @@ function MapView({
 
 export default function AdminMapa() {
   const [active, setActive] = useState<Emp | undefined>(undefined);
-  const { isMock } = getClient();
   
   useEffect(() => { 
-    document.title = `Mapa Interativo ${isMock ? '(Mock)' : ''} | BlockURB`; 
-  }, [isMock]);
+    document.title = `Mapa Interativo | BlockURB`; 
+  }, []);
 
   return (
     <Protected>

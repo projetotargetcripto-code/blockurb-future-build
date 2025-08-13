@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import L, { LatLngBoundsExpression, Layer } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { getClient } from "@/lib/dataClient";
+import { supabase } from "@/lib/dataClient";
 
 // Interface para empreendimentos do Supabase
 interface Empreendimento {
@@ -28,7 +28,6 @@ function SidebarEmpreendimentos({ onSelect, activeId }: { onSelect: (e: Empreend
 
   useEffect(() => {
     (async () => {
-      const { supabase } = getClient();
       const { data, error } = await supabase
         .from('empreendimentos')
         .select('id, nome, created_at')
@@ -149,9 +148,7 @@ function MapView({ selected }: { selected?: Empreendimento }) {
     setLoading(true);
     
     (async () => {
-      try {
-        const { supabase } = getClient();
-        
+      try {        
         // Load lotes via RPC
         const { data: fc, error: lotesError } = await supabase.rpc('lotes_geojson', { p_empreendimento: selected.id });
         

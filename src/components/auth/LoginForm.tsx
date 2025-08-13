@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { getClient } from "@/lib/dataClient";
+import { supabase } from "@/lib/dataClient";
 
 export interface LoginFormProps {
   title: string;
@@ -22,7 +22,6 @@ export function LoginForm({ title, subtitle, scope, redirectPath }: LoginFormPro
 
   const onSubmit = handleSubmit(async (data) => {
     setError(null);
-    const { supabase } = getClient();
     const { data: res, error } = await supabase.auth.signInWithPassword({ email: data.email, password: data.password });
     if (error) { setError(error.message || "Falha ao entrar"); return; }
     if (res?.session) {
