@@ -109,11 +109,17 @@ All colors MUST be HSL.
   .glass { @apply bg-background/70 backdrop-blur border border-border; }
   .gradient-text { @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent; }
   .pattern-grid { background-image: linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px); background-size: 20px 20px; background-position: -1px -1px; }
+  .hero-radial { background:
+      radial-gradient(1200px 600px at 20% 30%, hsl(var(--primary) / 0.18), transparent 50%),
+      radial-gradient(900px 500px at 80% 70%, hsl(var(--accent) / 0.14), transparent 55%);
+  }
   .card-hover { @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md; }
   .card-elevated { @apply p-6 rounded-lg ring-1 ring-border bg-background transition-all duration-200 shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:ring-primary/30; }
   .image-card { @apply overflow-hidden rounded-lg ring-1 ring-border border border-border bg-background transition-all duration-200 hover:-translate-y-0.5 hover:ring-primary/30; }
   .btn-glow { @apply shadow-md hover:shadow-lg ring-1 ring-primary/20 hover:ring-primary/40 transition-shadow; }
   .desat { filter: saturate(.85) contrast(1.05); }
+  .divider { @apply h-px w-full bg-gradient-to-r from-transparent via-accent/40 to-transparent; }
+  .icon-chip { @apply inline-flex items-center justify-center rounded-full ring-1 ring-accent/30 bg-secondary text-primary; }
   .story-link { position: relative; display: inline-block; }
   .story-link::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 2px; background-color: hsl(var(--primary)); transform: scaleX(0); transform-origin: bottom right; transition: transform 0.3s ease; }
   .story-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }

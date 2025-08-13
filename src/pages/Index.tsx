@@ -24,9 +24,9 @@ import { LogoRowSection } from "@/components/sections/LogoRow";
 import { TestimonialsSection } from "@/components/sections/Testimonials";
 import { FAQSection } from "@/components/sections/FAQ";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
-import heroImg from "@/assets/hero-blockurb.webp";
-import aboutImg from "@/assets/about-blockurb.webp";
-import impactoImg from "@/assets/impacto-blockurb.webp";
+import heroImg from "@/assets/hero-blockurb-dark.webp";
+import aboutImg from "@/assets/about-blockurb-dark.webp";
+import impactoImg from "@/assets/impacto-blockurb-dark.webp";
 import qrImg from "@/assets/qr-agendamento.webp";
 import { cn } from "@/lib/utils";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
@@ -69,12 +69,13 @@ const Index = () => {
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
+            <div className="absolute inset-0 hero-radial opacity-70 pointer-events-none" />
             <div className="absolute inset-0 pattern-grid opacity-20 pointer-events-none" ref={heroParallaxRef} style={heroParallaxStyle} />
           </div>
 
           <div className="relative container min-h-[70vh] sm:min-h-[78vh] flex items-center animate-enter">
             <div className="max-w-2xl py-16">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-xs">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs bg-secondary/60 ring-1 ring-accent/40 backdrop-blur">
                 <BadgeCheck className="opacity-80" /> Licenças limitadas por território
               </div>
               <h1 className="font-display text-3xl sm:text-5xl font-extrabold leading-tight gradient-text">
@@ -133,15 +134,15 @@ const Index = () => {
           <div className="container py-16">
             <h2 className="text-2xl sm:text-3xl font-semibold">Por que o modelo tradicional está ultrapassado?</h2>
             <div className="mt-8 grid md:grid-cols-3 gap-6">
-              <div className="card-elevated">
+              <div className="card-elevated ring-accent/20 hover:ring-accent/40">
                 <HandCoins />
                 <p className="mt-3">Investimento imobiliário restrito a grandes players</p>
               </div>
-              <div className="card-elevated">
+              <div className="card-elevated ring-accent/20 hover:ring-accent/40">
                 <Timer />
                 <p className="mt-3">Urbanização lenta e com altos custos</p>
               </div>
-              <div className="card-elevated">
+              <div className="card-elevated ring-accent/20 hover:ring-accent/40">
                 <Layers3 />
                 <p className="mt-3">Distratos e gargalos administrativos</p>
               </div>
@@ -161,7 +162,7 @@ const Index = () => {
               <span>Tecnologia</span>
             </div>
             <div className="flex flex-col items-center text-center gap-2">
-              <Coins className="text-primary" />
+              <Coins className="text-accent" />
               <span>Tokenização</span>
             </div>
             <div className="flex flex-col items-center text-center gap-2">
@@ -169,7 +170,7 @@ const Index = () => {
               <span>Franquia</span>
             </div>
             <div className="flex flex-col items-center text-center gap-2">
-              <Users className="text-primary" />
+              <Users className="text-accent" />
               <span>Comunidade</span>
             </div>
           </div>
@@ -186,19 +187,19 @@ const Index = () => {
             <Carousel>
               <CarouselContent>
                 <CarouselItem>
-                  <div className="card-elevated">
+                  <div className="card-elevated ring-accent/20 hover:ring-accent/40">
                     <h3 className="font-semibold">Franqueado</h3>
                     <p className="text-muted-foreground mt-2">Lucro recorrente com vendas e valorização</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="card-elevated">
+                  <div className="card-elevated ring-accent/20 hover:ring-accent/40">
                     <h3 className="font-semibold">Investidor</h3>
                     <p className="text-muted-foreground mt-2">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem>
-                  <div className="card-elevated">
+                  <div className="card-elevated ring-accent/20 hover:ring-accent/40">
                     <h3 className="font-semibold">Terrenista</h3>
                     <p className="text-muted-foreground mt-2">Monetização rápida da gleba com valorização antecipada</p>
                   </div>
@@ -212,15 +213,15 @@ const Index = () => {
           </div>
           {/* Desktop Cards */}
           <div className="mt-8 hidden md:grid md:grid-cols-3 gap-6">
-            <article className="card-elevated">
+            <article className="card-elevated ring-accent/20 hover:ring-accent/40">
               <h3 className="font-semibold">Franqueado</h3>
               <p className="text-muted-foreground mt-2">Lucro recorrente com vendas e valorização</p>
             </article>
-            <article className="card-elevated">
+            <article className="card-elevated ring-accent/20 hover:ring-accent/40">
               <h3 className="font-semibold">Investidor</h3>
               <p className="text-muted-foreground mt-2">Liquidez e acessibilidade (investir a partir de R$ 100)</p>
             </article>
-            <article className="card-elevated">
+            <article className="card-elevated ring-accent/20 hover:ring-accent/40">
               <h3 className="font-semibold">Terrenista</h3>
               <p className="text-muted-foreground mt-2">Monetização rápida da gleba com valorização antecipada</p>
             </article>
@@ -249,10 +250,10 @@ const Index = () => {
           <div className="container py-16 text-accent-foreground">
             <h2 className="text-2xl sm:text-3xl font-semibold">Benefícios da Tokenização</h2>
             <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="card-elevated bg-background/70"><Rocket className="text-primary"/> <p className="mt-2">Captação mais rápida</p></div>
-              <div className="card-elevated bg-background/70"><HandCoins className="text-primary"/> <p className="mt-2">Menos risco de capital próprio</p></div>
-              <div className="card-elevated bg-background/70"><Users className="text-primary"/> <p className="mt-2">Comunidade de investidores em cada projeto</p></div>
-              <div className="card-elevated bg-background/70"><Coins className="text-primary"/> <p className="mt-2">Facilidade de revenda de cotas</p></div>
+              <div className="card-elevated ring-accent/20 bg-background/70"><Rocket className="text-primary"/> <p className="mt-2">Captação mais rápida</p></div>
+              <div className="card-elevated ring-accent/20 bg-background/70"><HandCoins className="text-primary"/> <p className="mt-2">Menos risco de capital próprio</p></div>
+              <div className="card-elevated ring-accent/20 bg-background/70"><Users className="text-primary"/> <p className="mt-2">Comunidade de investidores em cada projeto</p></div>
+              <div className="card-elevated ring-accent/20 bg-background/70"><Coins className="text-primary"/> <p className="mt-2">Facilidade de revenda de cotas</p></div>
             </div>
           </div>
         </section>
@@ -321,7 +322,7 @@ const Index = () => {
               </ul>
             </div>
             <aside className="hidden md:flex flex-col items-center">
-              <img src={qrImg} alt="QR code para agendamento com especialista" className="w-32 h-32 border border-border rounded" loading="lazy" decoding="async" />
+              <img src={qrImg} alt="QR code para agendamento com especialista" className="w-32 h-32 rounded ring-1 ring-accent/30" loading="lazy" decoding="async" />
               <span className="mt-2 text-xs opacity-80">Escaneie para agendar</span>
             </aside>
           </footer>
