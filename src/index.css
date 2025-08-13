@@ -170,3 +170,18 @@ All colors MUST be HSL.
   50% { box-shadow: 0 0 36px 10px hsl(var(--accent) / 0.30); }
 }
 
+/* Marquee horizontal infinito para parcerias e depoimentos */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee { position: relative; overflow: hidden; }
+.marquee-track {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  width: max-content;
+  padding-block: 0.25rem;
+  animation: marquee-left var(--marquee-duration, 55s) linear infinite;
+}
+

@@ -20,13 +20,33 @@ function TestimonialCard({ quote, name, role }: TestimonialProps) {
 }
 
 export function TestimonialsSection() {
+  const testimonials: TestimonialProps[] = [
+    { quote: "Operação leve, processos claros e suporte 360°. Resultado em tempo recorde.", name: "Mariana S.", role: "Franqueada • MG" },
+    { quote: "Tokenização parcial abriu um novo público e acelerou a captação.", name: "Rafael T.", role: "Investidor • SP" },
+    { quote: "Transformamos a gleba em um projeto vendável com previsibilidade.", name: "João P.", role: "Terrenista • PR" },
+    { quote: "Painéis claros. Consegui gerir equipe e funil sem planilhas.", name: "Carlos M.", role: "Admin Filial • RS" },
+    { quote: "Relatórios confiáveis e auditoria facilitada reduziram retrabalho.", name: "Lívia A.", role: "Contabilidade • SP" },
+  ];
+
   return (
     <Section id="testemunhos">
       <Heading as="h3" className="text-xl sm:text-2xl">O que dizem os parceiros</Heading>
-      <div className="mt-6 grid md:grid-cols-3 gap-6">
-        <TestimonialCard quote="Operação leve, processos claros e suporte 360°. Resultado em tempo recorde." name="Mariana S." role="Franqueada • MG" />
-        <TestimonialCard quote="Tokenização parcial abriu um novo público e acelerou a captação." name="Rafael T." role="Investidor • SP" />
-        <TestimonialCard quote="Transformamos a gleba em um projeto vendável com previsibilidade." name="João P." role="Terrenista • PR" />
+      {/* TODO: Substituir por depoimentos reais vindos da base quando integrar Supabase */}
+      <div className="mt-6 marquee" aria-label="Depoimentos de parceiros em rolagem contínua">
+        <div className="marquee-track">
+          {testimonials.map((t, i) => (
+            <div key={`a-${i}`} className="w-[320px]">
+              <TestimonialCard {...t} />
+            </div>
+          ))}
+        </div>
+        <div className="marquee-track" aria-hidden>
+          {testimonials.map((t, i) => (
+            <div key={`b-${i}`} className="w-[320px]">
+              <TestimonialCard {...t} />
+            </div>
+          ))}
+        </div>
       </div>
     </Section>
   );
