@@ -414,13 +414,8 @@ const Index = () => {
         </div>
       </div>
 
-      {/* CTA flutuante desktop */}
-      <div className="hidden sm:block fixed bottom-6 right-6 z-50">
-        <a href="#contato">
-          <Button variant="cta" size="lg" className="hover-scale btn-glow">Falar com Especialista</Button>
-        </a>
-      </div>
-      <WhatsAppFloat />
+      <WhatsAppFloat label="Falar com Especialista" />
+
     </div>
   );
 };

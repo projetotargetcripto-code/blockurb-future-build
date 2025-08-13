@@ -28,21 +28,16 @@ export function TestimonialsSection() {
     { quote: "Relatórios confiáveis e auditoria facilitada reduziram retrabalho.", name: "Lívia A.", role: "Contabilidade • SP" },
   ];
 
+  const loop = [...testimonials, ...testimonials];
+
   return (
     <Section id="testemunhos">
       <Heading as="h3" className="text-xl sm:text-2xl">O que dizem os parceiros</Heading>
       {/* TODO: Substituir por depoimentos reais vindos da base quando integrar Supabase */}
       <div className="mt-6 marquee" aria-label="Depoimentos de parceiros em rolagem contínua">
-        <div className="marquee-track">
-          {testimonials.map((t, i) => (
-            <div key={`a-${i}`} className="w-[320px]">
-              <TestimonialCard {...t} />
-            </div>
-          ))}
-        </div>
-        <div className="marquee-track" aria-hidden>
-          {testimonials.map((t, i) => (
-            <div key={`b-${i}`} className="w-[320px]">
+        <div className="marquee-track" style={{ ['--marquee-duration' as any]: '65s' }}>
+          {loop.map((t, i) => (
+            <div key={i} className="w-[320px]">
               <TestimonialCard {...t} />
             </div>
           ))}
