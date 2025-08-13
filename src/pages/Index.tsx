@@ -64,7 +64,7 @@ const Index = () => {
             <img
               src={heroImg}
               alt="Bairro planejado com tecnologia e natureza integrada"
-              className="w-full h-full object-cover"
+              className="desat w-full h-full object-cover"
               loading="eager"
               decoding="async"
             />
@@ -121,7 +121,7 @@ const Index = () => {
             <img
               src={aboutImg}
               alt="Ilustração de masterplan e urbanização planejada"
-              className="w-full h-auto object-cover"
+              className="desat w-full h-auto object-cover"
               loading="lazy"
               decoding="async"
             />
@@ -245,7 +245,7 @@ const Index = () => {
         </section>
 
         {/* Benefícios da Tokenização */}
-        <section id="beneficios" className="bg-accent scroll-mt-24">
+        <section id="beneficios" className="scroll-mt-24">
           <div className="container py-16 text-accent-foreground">
             <h2 className="text-2xl sm:text-3xl font-semibold">Benefícios da Tokenização</h2>
             <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -263,7 +263,7 @@ const Index = () => {
             <img
               src={impactoImg}
               alt="Bairro sustentável e integrado socialmente"
-              className="w-full h-auto object-cover"
+              className="desat w-full h-auto object-cover"
               loading="lazy"
               decoding="async"
             />
