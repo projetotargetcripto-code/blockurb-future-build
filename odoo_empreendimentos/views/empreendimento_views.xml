@@ -1,0 +1,53 @@
+<odoo>
+    <record id="view_empreendimento_form" model="ir.ui.view">
+        <field name="name">empreendimento.blockurb.form</field>
+        <field name="model">empreendimento.blockurb</field>
+        <field name="arch" type="xml">
+            <form string="Empreendimento">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="descricao"/>
+                        <field name="masterplan" filename="masterplan_filename"/>
+                        <field name="geojson" filename="geojson_filename"/>
+                    </group>
+                    <notebook>
+                        <page string="Lotes">
+                            <field name="lote_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                    <field name="area"/>
+                                    <field name="preco"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Preview do Mapa">
+                            <div class="oe_title">
+                                <h2>Preview do Masterplan e Lotes</h2>
+                            </div>
+                            <div id="map_preview" style="height:400px; width:100%"></div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_empreendimento_tree" model="ir.ui.view">
+        <field name="name">empreendimento.blockurb.tree</field>
+        <field name="model">empreendimento.blockurb</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="lote_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_empreendimento" model="ir.actions.act_window">
+        <field name="name">Empreendimentos</field>
+        <field name="res_model">empreendimento.blockurb</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

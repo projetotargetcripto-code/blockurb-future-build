@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="menu_empreendimento_root" name="Empreendimentos" sequence="10"/>
+    <menuitem id="menu_empreendimento" name="Empreendimentos" parent="menu_empreendimento_root" action="action_empreendimento" sequence="1"/>
+</odoo>

@@ -1,0 +1,7 @@
+#map_preview {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-height: 300px;
+    background: #f8f9fa;
+    margin-top: 8px;
+}
